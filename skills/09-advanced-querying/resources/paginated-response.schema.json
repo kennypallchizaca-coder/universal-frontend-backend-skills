@@ -1,0 +1,76 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "PaginatedResponse",
+    "description": "Standard paginated response shape for any list endpoint (Skill 09 - advanced-querying)",
+    "type": "object",
+    "required": [
+        "content",
+        "totalElements",
+        "totalPages",
+        "number",
+        "size",
+        "first",
+        "last"
+    ],
+    "properties": {
+        "content": {
+            "type": "array",
+            "description": "Array of items for the current page. Each item uses the {Resource}ResponseDto shape.",
+            "items": {
+                "type": "object"
+            }
+        },
+        "totalElements": {
+            "type": "integer",
+            "description": "Total number of records matching the active filters (not just the current page)",
+            "example": 1250
+        },
+        "totalPages": {
+            "type": "integer",
+            "description": "Total number of pages: ceil(totalElements / size)",
+            "example": 125
+        },
+        "number": {
+            "type": "integer",
+            "description": "Current page index (zero-based)",
+            "example": 0
+        },
+        "size": {
+            "type": "integer",
+            "description": "Number of items per page as applied in this response",
+            "example": 10
+        },
+        "first": {
+            "type": "boolean",
+            "description": "true if this is the first page (number === 0)",
+            "example": true
+        },
+        "last": {
+            "type": "boolean",
+            "description": "true if this is the last page ((number + 1) * size >= totalElements)",
+            "example": false
+        }
+    },
+    "examples": [
+        {
+            "content": [
+                {
+                    "id": 1,
+                    "name": "Product A",
+                    "price": 99.99
+                },
+                {
+                    "id": 2,
+                    "name": "Product B",
+                    "price": 149.99
+                }
+            ],
+            "totalElements": 1250,
+            "totalPages": 125,
+            "number": 0,
+            "size": 10,
+            "first": true,
+            "last": false
+        }
+    ]
+}

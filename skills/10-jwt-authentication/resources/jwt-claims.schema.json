@@ -1,0 +1,66 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "JWTClaims",
+    "description": "Standard JWT payload claims for any backend authentication system (Skill 10 - jwt-authentication)",
+    "type": "object",
+    "required": [
+        "sub",
+        "id",
+        "roles",
+        "iat",
+        "exp"
+    ],
+    "properties": {
+        "sub": {
+            "type": "string",
+            "description": "Subject — the user's identifier field (email, username, phone, etc.)",
+            "example": "user@example.com"
+        },
+        "id": {
+            "type": "integer",
+            "description": "The user's database ID for fast lookup without additional queries",
+            "example": 42
+        },
+        "roles": {
+            "type": "array",
+            "description": "List of role names the user has — used by the authorization layer (skill 11)",
+            "items": {
+                "type": "string"
+            },
+            "example": [
+                "ROLE_USER",
+                "ROLE_EDITOR"
+            ]
+        },
+        "iat": {
+            "type": "integer",
+            "description": "Issued At — Unix timestamp (seconds) when the token was created",
+            "example": 1735225640
+        },
+        "exp": {
+            "type": "integer",
+            "description": "Expiration — Unix timestamp (seconds) when the token expires. Reject if current time > exp.",
+            "example": 1735312040
+        }
+    },
+    "examples": [
+        {
+            "sub": "admin@example.com",
+            "id": 1,
+            "roles": [
+                "ROLE_ADMIN"
+            ],
+            "iat": 1735225640,
+            "exp": 1735312040
+        },
+        {
+            "sub": "john.doe@example.com",
+            "id": 42,
+            "roles": [
+                "ROLE_USER"
+            ],
+            "iat": 1735225640,
+            "exp": 1735312040
+        }
+    ]
+}
