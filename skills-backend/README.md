@@ -37,10 +37,10 @@
 | **02** | [**modular-project-structure**](./02-modular-project-structure/SKILL.md) | Domain-driven folder routing | Ruteo de carpetas guiado por dominio | 🟢 Low |
 | **03** | [**rest-api-design**](./03-rest-api-design/SKILL.md) | Standard HTTP REST mapping | Mapeo HTTP REST estándar | 🟢 Low |
 | **04** | [**service-layer**](./04-service-layer/SKILL.md) | Business Logic encapsulated | Lógica de Negocio encapsulada | 🟢 Low |
-| **05** | [**data-persistence**](./05-data-persistence/SKILL.md) | ORM Repository abstraction | Abstracción de Repositorio ORM | 🟡 Med |
+| **05** | [**data-persistence**](./05-data-persistence/SKILL.md) | ORM Repository abstraction | Abstracción de Repositorio ORM | 🟡 Medium |
 | **06** | [**dto-and-validation**](./06-dto-and-validation/SKILL.md) | Request Payload strict validation | Validación estricta de Payloads | 🟢 Low |
-| **07** | [**error-handling**](./07-error-handling/SKILL.md) | Global centralized try/catch | Excepciones Globales centralizadas | 🟡 Med |
-| **08** | [**entity-relationships**](./08-entity-relationships/SKILL.md) | Foreign Keys and Joins isolation | Aislamiento de Llaves Foráneas y Joins | 🟡 Med |
+| **07** | [**error-handling**](./07-error-handling/SKILL.md) | Global centralized try/catch | Excepciones Globales centralizadas | 🟡 Medium |
+| **08** | [**entity-relationships**](./08-entity-relationships/SKILL.md) | Foreign Keys and Joins isolation | Aislamiento de Llaves Foráneas y Joins | 🟡 Medium |
 | **09** | [**advanced-querying**](./09-advanced-querying/SKILL.md) | Native limits and URL queries | Límites nativos y Paginated URLs | 🟢 Low |
 | **10** | [**jwt-authentication**](./10-jwt-authentication/SKILL.md) | Passwords & Web Token Issuance | Contraseñas y Emisión JWT | 🔴 High|
 | **11** | [**authorization**](./11-authorization/SKILL.md) | Role Guard Route Blockers | Guardias bloqueadores de Rol | 🔴 High|
