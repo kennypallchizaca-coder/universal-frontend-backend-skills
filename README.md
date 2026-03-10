@@ -1,44 +1,49 @@
-# 🌌 Universal Full-Stack Skills Library
+# 💎 The Universal Full-Stack Agentic Ecosystem
 ### The Ultimate Collection of 24 Agentic Skills for your AI Workspace
 **Battle-tested · Framework-agnostic · Language-agnostic · Frontend & Backend**
+
+<div align="center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Frontend Skills](https://img.shields.io/badge/Frontend-12_Skills-blue)]()
 [![Backend Skills](https://img.shields.io/badge/Backend-12_Skills-green)]()
 [![Bilingual](https://img.shields.io/badge/Bilingual-EN%20%7C%20ES-orange)]()
-
 [![Claude Code](https://img.shields.io/badge/Claude_Code-✓-orange)]()
 [![Gemini CLI](https://img.shields.io/badge/Gemini_CLI-✓-blue)]()
 [![Cursor](https://img.shields.io/badge/Cursor-✓-black)]()
+[![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-✓-007ACC)]()
+[![OpenAI Codex](https://img.shields.io/badge/OpenAI_Codex-✓-00A67E)]()
 [![Antigravity](https://img.shields.io/badge/Antigravity-✓-purple)]()
-[![VS Code Copilot](https://img.shields.io/badge/Copilot-✓-007ACC)]()
+[![Devin](https://img.shields.io/badge/Devin_AI-✓-CA2A62)]()
+[![OpenCode](https://img.shields.io/badge/OpenCode-✓-4B32C3)]()
+[![Tabnine](https://img.shields.io/badge/Tabnine-✓-FF8E00)]()
+
+</div>
 
 ---
 
-## 🌎 About this Library / Sobre esta Librería
+## 📖 About this Ecosystem / Sobre este Ecosistema
 
-**(EN):** 
-AI Agents (like Claude Code, Cursor, or Gemini) are smart, but they lack **specific implementation playbooks**. These **Skills** are hyper-optimized dual-language markdown files that teach your agent exactly how to do frontend and backend tasks correctly — preventing loops, context deterioration, and poor architecture. 
+> **(EN):** AI Agents (like Claude Code, Cursor, or Gemini) are smart, but they lack **specific implementation playbooks**. These **Skills** are hyper-optimized dual-language markdown files that teach your agent exactly how to do frontend and backend tasks correctly — preventing loops, context deterioration, and poor architecture. 
+> 
+> *Every single Skill is carefully constructed in both **English and Spanish** to maximize NLP ingestion and parsing logic by LLMs, ensuring perfect predictability and robust code generation regardless of the stack.*
 
-Every single Skill is carefully constructed in both **English and Spanish** to maximize NLP ingestion and parsing logic by LLMs, ensuring perfect predictability and robust code generation regardless of the stack.
-
-**(ES):** 
-Los agentes de IA son inteligentes, pero carecen de **libros de jugadas de implementación específicos**. Estas **Skills** son archivos markdown bilingües hiper-optimizados que enseñan a tu agente exactamente cómo hacer tareas de frontend y backend — previniendo bucles ciegos, deterioros de contexto y arquitecturas pobres. 
-
-Cada Skill se construye meticulosamente tanto en **Inglés como en Español** para maximizar la asimilación profunda NLP en los modelos LLM, garantizando rutinas perfectas y una generación de código robusta sin importar el stack tecnológico.
+> **(ES):** Los agentes de IA son inteligentes, pero carecen de **libros de jugadas de implementación específicos**. Estas **Skills** son archivos markdown bilingües hiper-optimizados que enseñan a tu agente exactamente cómo hacer tareas de frontend y backend — previniendo bucles ciegos, deterioros de contexto y arquitecturas pobres. 
+>
+> *Cada Skill se construye meticulosamente tanto en **Inglés como en Español** para maximizar la asimilación profunda NLP en los modelos LLM, garantizando rutinas perfectas y una generación de código robusta sin importar el stack tecnológico.*
 
 ---
 
-## 🚀 Why Use This? / ¿Por qué usar esto?
+## 🎯 Why Use This? / ¿Por qué usar esto?
 
-✅ **Zero Hallucinations:** Prevents AI from guessing. It gives them standard operating procedures (SOPs).  
-✅ **Bilingual Engine:** Dual English/Spanish prompts maximize AI understanding.  
-✅ **Modular:** 12 Frontend skills and 12 Backend skills to cover the entire development lifecycle.  
-✅ **Universal:** Works for React, Angular, Vue, Spring Boot, Express, Django, FastAPI, and more.  
+🔹 **Zero Hallucinations:** Prevents AI from guessing. It gives them standard operating procedures (SOPs).  
+🔹 **Bilingual Engine:** Dual English/Spanish prompts maximize AI understanding.  
+🔹 **Modular:** 12 Frontend skills and 12 Backend skills to cover the entire development lifecycle.  
+🔹 **Universal:** Works flawlessly for React, Angular, Vue, Spring Boot, Express, Django, FastAPI, and more.  
 
 ---
 
-## ⚡️ Quick Start / Inicio Rápido
+## ⏱️ Quick Start / Inicio Rápido
 
 **(EN):** Point your AI explicitly to the target folder and skill:
 > "Use the **@04-service-layer** skill located inside `skills-backend/` to implement my business logic."
@@ -50,7 +55,7 @@ Cada Skill se construye meticulosamente tanto en **Inglés como en Español** pa
 
 ---
 
-## 🎨 Frontend Skills (UI/UX & Client Logic)
+## 🖥️ Frontend Skills (UI/UX & Client Logic)
 
 📍 **Location:** `./frontend-skills/`
 
@@ -71,7 +76,7 @@ Cada Skill se construye meticulosamente tanto en **Inglés como en Español** pa
 
 ---
 
-## ⚙️ Backend Skills (Server, DB & Auth)
+## 🗄️ Backend Skills (Server, DB & Auth)
 
 📍 **Location:** `./skills-backend/` ([View Full Backend Docs](./skills-backend/README.md))
 
@@ -112,5 +117,5 @@ Estas skills respetan orgánicamente el sistema genérico de formateado en `SKIL
 
 ---
 
-## ⚖️ License
+## 📝 License
 MIT License — free to use, modify, and distribute in any project. Made for the Future of Coding. 🚀
