@@ -1,11 +1,12 @@
 # Dockerfile Multi-Stage Template
 
-Adapt this template to your language and framework.
+Adapt these examples to your language and framework, but keep the same production principles:
 
-## Structure
-
-- **Stage 1 (builder):** full compiler image — installs dependencies and compiles the artifact
-- **Stage 2 (runtime):** minimal image — copies only the compiled artifact. Production image.
+- Build in one stage, run in another.
+- Exclude dev-only files with `.dockerignore`.
+- Run as a non-root user whenever possible.
+- Load secrets from runtime environment or a secret manager.
+- Expose a health endpoint the platform can probe.
 
 ---
 
@@ -14,13 +15,19 @@ Adapt this template to your language and framework.
 ```dockerfile
 FROM eclipse-temurin:21-jdk AS builder
 WORKDIR /app
-COPY . .
-RUN ./gradlew build -x test
+COPY gradlew gradlew
+COPY gradle gradle
+COPY build.gradle* settings.gradle* ./
+RUN ./gradlew --no-daemon dependencies
+COPY src src
+RUN ./gradlew --no-daemon build -x test
 
 FROM eclipse-temurin:21-jre
 WORKDIR /app
+RUN useradd --system --uid 1001 appuser
 COPY --from=builder /app/build/libs/*.jar app.jar
-EXPOSE ${PORT:-8080}
+USER appuser
+EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
 
@@ -33,12 +40,16 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN npm run build
+RUN npm prune --omit=dev
 
 FROM node:20-alpine
 WORKDIR /app
-COPY --from=builder /app/dist ./dist
+RUN addgroup -S app && adduser -S app -G app
+COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
-EXPOSE ${PORT:-8080}
+COPY --from=builder /app/dist ./dist
+USER app
+EXPOSE 8080
 CMD ["node", "dist/main.js"]
 ```
 
@@ -51,13 +62,16 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN npm run build
+RUN npm prune --omit=dev
 
 FROM node:20-alpine
 WORKDIR /app
+RUN addgroup -S app && adduser -S app -G app
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
-COPY package*.json ./
-RUN npm ci --omit=dev
-EXPOSE ${PORT:-3000}
+USER app
+EXPOSE 3000
 CMD ["node", "dist/main.js"]
 ```
 
@@ -66,14 +80,21 @@ CMD ["node", "dist/main.js"]
 ```dockerfile
 FROM python:3.12-slim AS builder
 WORKDIR /app
+ENV VIRTUAL_ENV=/opt/venv
+RUN python -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 FROM python:3.12-slim
 WORKDIR /app
-COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
+ENV VIRTUAL_ENV=/opt/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+RUN useradd --system --uid 1001 appuser
+COPY --from=builder /opt/venv /opt/venv
 COPY . .
-EXPOSE ${PORT:-8080}
+USER appuser
+EXPOSE 8080
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
 ```
 
@@ -85,12 +106,14 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
-RUN go build -o /app/server .
+RUN CGO_ENABLED=0 GOOS=linux go build -o /app/server .
 
 FROM alpine:3.20
 WORKDIR /app
-COPY --from=builder /app/server .
-EXPOSE ${PORT:-8080}
+RUN addgroup -S app && adduser -S app -G app
+COPY --from=builder /app/server ./server
+USER app
+EXPOSE 8080
 CMD ["./server"]
 ```
 
@@ -105,10 +128,10 @@ docker build -t {app-name}:latest .
 # Run with production env vars
 docker run -p 8080:8080 \
   -e DATABASE_URL="postgresql://..." \
-  -e JWT_SECRET="your-secret" \
+  -e JWT_SECRET="replace-with-a-real-secret" \
   -e APP_ENV="production" \
   {app-name}:latest
 
-# Verify
+# Verify the health endpoint from the host
 curl http://localhost:8080/health
 ```

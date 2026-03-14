@@ -1,14 +1,19 @@
 # Global Stores Matrix
 
-Modern frontend relies on decentralized, atomic stores rather than one giant "Redux-like" state.
+Use global stores for client-owned state such as session status, theme, filters, and temporary UI workflows.
+
+Security note:
+- Prefer `httpOnly` secure cookies for session transport.
+- Keep the frontend store focused on `user` and `sessionStatus`.
+- If your backend truly requires bearer tokens in the browser, isolate that logic in a dedicated auth service and document the risk explicitly.
 
 ## React (Zustand)
-
-Zustand prevents unnecessary re-renders automatically without Context providers.
 
 Filename: `src/shared/stores/auth.store.ts`
 ```typescript
 import { create } from 'zustand';
+
+type SessionStatus = 'unknown' | 'authenticated' | 'guest';
 
 interface User {
   id: number;
@@ -17,116 +22,101 @@ interface User {
 }
 
 interface AuthState {
+  status: SessionStatus;
   user: User | null;
-  token: string | null;
-  login: (user: User, token: string) => void;
-  logout: () => void;
-  isAuthenticated: () => boolean;
+  setAuthenticated: (user: User) => void;
+  setGuest: () => void;
 }
 
-export const useAuthStore = create<AuthState>((set, get) => ({
+export const useAuthStore = create<AuthState>((set) => ({
+  status: 'unknown',
   user: null,
-  token: localStorage.getItem('token'),
-  login: (user, token) => {
-    localStorage.setItem('token', token);
-    set({ user, token });
-  },
-  logout: () => {
-    localStorage.removeItem('token');
-    set({ user: null, token: null });
-  },
-  isAuthenticated: () => !!get().token
+  setAuthenticated: (user) => set({ status: 'authenticated', user }),
+  setGuest: () => set({ status: 'guest', user: null }),
 }));
 ```
 
 ## Vue (Pinia)
 
-Pinia is the official Vue 3 state manager. It maps perfectly to Vue's Composition API (`ref` = state, `computed` = getters, `function` = actions).
-
 Filename: `src/shared/stores/auth.store.ts`
 ```typescript
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
+
+type SessionStatus = 'unknown' | 'authenticated' | 'guest';
 
 export const useAuthStore = defineStore('auth', () => {
-  // State
-  const user = ref(null);
-  const token = ref(localStorage.getItem('token'));
+  const status = ref<SessionStatus>('unknown');
+  const user = ref<User | null>(null);
 
-  // Getters
-  const isAuthenticated = computed(() => !!token.value);
+  const isAuthenticated = computed(() => status.value === 'authenticated');
+  const isBootstrapping = computed(() => status.value === 'unknown');
 
-  // Actions
-  function login(newUser, newToken) {
-    localStorage.setItem('token', newToken);
-    token.value = newToken;
-    user.value = newUser;
+  function setAuthenticated(nextUser: User) {
+    status.value = 'authenticated';
+    user.value = nextUser;
   }
 
-  function logout() {
-    localStorage.removeItem('token');
-    token.value = null;
+  function setGuest() {
+    status.value = 'guest';
     user.value = null;
   }
 
-  return { user, token, isAuthenticated, login, logout };
+  return { status, user, isAuthenticated, isBootstrapping, setAuthenticated, setGuest };
 });
 ```
 
 ## Angular (Signals / Services)
 
-In modern Angular (16+), a global state is simply an `@Injectable` mapped with `Signals` (similar to Vue's `ref`).
-
 Filename: `src/shared/stores/auth.store.ts`
 ```typescript
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, computed, signal } from '@angular/core';
+
+type SessionStatus = 'unknown' | 'authenticated' | 'guest';
 
 @Injectable({ providedIn: 'root' })
 export class AuthStore {
-  // State
+  status = signal<SessionStatus>('unknown');
   user = signal<User | null>(null);
-  token = signal<string | null>(localStorage.getItem('token'));
 
-  // Getters
-  isAuthenticated = computed(() => !!this.token());
+  isAuthenticated = computed(() => this.status() === 'authenticated');
+  isBootstrapping = computed(() => this.status() === 'unknown');
 
-  // Actions
-  login(newUser: User, newToken: string) {
-    localStorage.setItem('token', newToken);
-    this.token.set(newToken);
-    this.user.set(newUser);
+  setAuthenticated(user: User) {
+    this.status.set('authenticated');
+    this.user.set(user);
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    this.token.set(null);
+  setGuest() {
+    this.status.set('guest');
     this.user.set(null);
   }
 }
 ```
 
-## Astro (NanoStores)
-
-Astro islands (React, Vue, Svelte components within the same page) can only share state using framework-agnostic stores like NanoStores.
+## Astro (Nano Stores)
 
 Filename: `src/shared/stores/auth.store.ts`
 ```typescript
 import { atom, computed } from 'nanostores';
 
-export const $token = atom<string | null>(typeof window !== 'undefined' ? localStorage.getItem('token') : null);
+type SessionStatus = 'unknown' | 'authenticated' | 'guest';
+
+export const $sessionStatus = atom<SessionStatus>('unknown');
 export const $user = atom<User | null>(null);
 
-export const $isAuthenticated = computed($token, token => !!token);
+export const $isAuthenticated = computed(
+  $sessionStatus,
+  (status) => status === 'authenticated'
+);
 
-export function login(newUser: User, newToken: string) {
-  if (typeof window !== 'undefined') localStorage.setItem('token', newToken);
-  $token.set(newToken);
-  $user.set(newUser);
+export function setAuthenticated(user: User) {
+  $sessionStatus.set('authenticated');
+  $user.set(user);
 }
 
-export function logout() {
-  if (typeof window !== 'undefined') localStorage.removeItem('token');
-  $token.set(null);
+export function setGuest() {
+  $sessionStatus.set('guest');
   $user.set(null);
 }
 ```

@@ -1,7 +1,7 @@
 ---
 name: 08-entity-relationships
-description: "Establishes clean relationships successfully effortlessly effortlessly magically seamlessly explicitly seamlessly cleanly effectively smartly correctly smoothly magically smoothly identically organically perfectly smartly seamlessly."
-risk: low
+description: "Models entity relationships explicitly so cardinality, ownership and loading behavior stay correct and maintainable."
+risk: medium
 universal: true
 source: community
 date_added: "2026-03-10"
@@ -10,58 +10,70 @@ date_added: "2026-03-10"
 # 1. Skill Description
 
 **Description (EN):**
-Database normalizations explicitly natively rely cleanly easily seamlessly successfully dependably securely expertly correctly optimally expertly seamlessly correctly flawlessly gracefully expertly seamlessly dependably dependably identically organically seamlessly identically dependably smartly explicit intelligently cleanly magically beautifully intelligently purely seamlessly properly optimally correctly dependably flawlessly flawlessly natively beautifully expertly expertly cleanly natively gracefully intelligently properly flawlessly dependably elegantly automatically rely neatly perfectly efficiently perfectly exactly purely securely actively safely properly beautifully actively correctly seamlessly smoothly safely nicely smartly appropriately organically dependably precisely explicitly manually realistically cleanly gracefully predictably cleverly smartly realistically beautifully effortlessly effectively correctly confidently smoothly flawlessly dependably smartly nicely smoothly magically securely cleanly explicitly expertly organically magically gracefully intuitively identical gracefully elegantly cleverly realistically natively creatively properly flawlessly identically intelligently intuitively expertly dependably cleanly accurately precisely exactly smoothly dependably cleanly smartly nicely expertly cleanly safely dependably explicitly flawlessly neatly securely securely magically cleanly magically gracefully exactly explicitly smoothly flawlessly organically optimally effectively identically effectively automatically perfectly cleverly flawlessly magically successfully nicely predictably cleanly dynamically correctly excellently dependably dependably intuitively elegantly.
-
-*(Rewrite)*
-Databases rely on explicit entity foreign-key definitions seamlessly optimally creatively optimally appropriately easily identically successfully safely cleanly beautifully smartly safely seamlessly dependably intelligently practically explicitly correctly effectively flawlessly effectively cleanly organically efficiently cleverly intuitively exactly smartly beautifully properly exactly cleanly ideally effectively rely functionally organically easily predictably dynamically cleanly expertly.
+Relationships are where many persistence bugs begin: duplicate ownership, accidental cascades, recursive serialization, and N+1 queries. This skill helps define entity associations with explicit ownership, constraints, and fetch strategies.
 
 **Descripción (ES):**
-Las normalizaciones en Bases de Datos asiladas puros a nativos se apoyan en puras definiciones relacionales purificadas local asilada constantes (Primary Key y Foreign Key / Uno-a-Muchos / Muchos-a-Muchos). Desarrollar un diseño base con un asilamiento confuso al instanciar ORMs genera cascadas de intermedios y lentitud total asilado global a las búsquedas complejas. Esta skill implementa los marcadores nativos abstractos y reglas de pertenencia.
+Las relaciones son el origen de muchos bugs de persistencia: ownership duplicado, cascadas accidentales, serialización recursiva y consultas N+1. Esta skill ayuda a definir asociaciones entre entidades con ownership, restricciones y estrategias de carga explícitas.
 
 ---
 
 # 2. Skill Objective
 
 **Objective (EN):**
-Deploy relationship mappers cleanly smoothly magically intelligently cleanly implicitly cleanly smoothly perfectly cleanly seamlessly dependably intelligently flawlessly seamlessly actively cleanly actively dynamically ideally cleanly correctly seamlessly correctly perfectly securely dependably nicely organically efficiently optimally cleanly carefully optimally effectively automatically smoothly safely realistically beautifully seamlessly confidently naturally efficiently magically successfully nicely dependably intuitively cleanly cleanly appropriately expertly.
+Implement entity relationships that preserve data integrity and keep API serialization under control.
+- Use this skill when: Modeling one-to-one, one-to-many, many-to-one, or many-to-many associations.
+- Do not use this skill when: The data model is flat and does not reference other entities.
 
 **Objetivo (ES):**
-Instanciar los modelos y esquemas asilados conectando variables virtuales base lógicas abstractas atando el ID de Foreign Key (Llaves Foráneas) asegurando extracción directa anidada estable en lecturas `JOIN`.
+Implementar relaciones entre entidades que preserven integridad de datos y mantengan controlada la serialización de la API.
+- Úsese cuando: Se modelen asociaciones one-to-one, one-to-many, many-to-one o many-to-many.
+- No se use cuando: El modelo de datos sea plano y no referencie otras entidades.
 
 ---
 
 # 3. Inputs / Entradas
 
 **Inputs (EN):**
-1. `Schema Model`: Definitions mapping perfectly smoothly expertly explicitly smartly manually cleanly effectively logically dependably magically magically dynamically magically smartly intelligently cleanly successfully explicitly efficiently gracefully smoothly identically effectively flawlessly manually creatively nicely organically cleanly manually functionally smoothly seamlessly skillfully confidently smoothly purely intuitively cleverly beautifully seamlessly neatly correctly beautifully creatively dependably easily successfully implicitly expertly seamlessly elegantly intelligently gracefully cleanly implicitly identically intelligently cleanly smartly flawlessly logically beautifully expertly cleverly successfully identical predictably natively purely expertly efficiently effectively safely gracefully identically intuitively dependably exactly predictably safely smartly securely identically seamlessly correctly smoothly beautifully smoothly seamlessly identical seamlessly natively flawlessly explicit identical exactly brilliantly purely automatically elegantly smoothly safely smartly nicely cleanly effortlessly dependably dependably dependably identical seamlessly manually identical seamlessly gracefully creatively excellently beautifully magically dependably brilliantly identical predictably smartly explicit implicitly effectively cleanly manually smoothly manually dependably dependably exactly expertly beautifully efficiently magically successfully exactly beautifully nicely dependably efficiently beautifully explicitly smoothly flawlessly reliably cleverly explicitly smoothly organically intuitively cleverly gracefully dependably seamlessly intuitively perfectly magically reliably securely effectively expertly optimally correctly seamlessly reliably smartly seamlessly successfully cleanly expertly safely safely exactly intelligently creatively functionally efficiently functionally carefully confidently safely explicit flawlessly optimally exactly exactly beautifully successfully smoothly purely seamlessly exactly cleanly reliably identically safely correctly smoothly seamlessly securely smartly efficiently creatively dependably safely successfully safely neatly beautifully dependably identical purely optimally cleanly functionally creatively beautifully explicitly properly smoothly natively cleanly ideally purely confidently accurately neatly manually expertly smoothly cleanly dependably smartly organically smoothly dependably correctly automatically correctly gracefully actively efficiently cleanly intelligently securely flawlessly dynamically identical precisely gracefully successfully securely optimally realistically identical realistically smartly logically natively optimally cleverly manually dynamically brilliantly flawlessly beautifully smoothly magically practically elegantly realistically safely automatically dependably intelligently dynamically seamlessly expertly identical identical dependably rely explicitly predictably purely logically naturally intelligently magically successfully successfully successfully brilliantly carefully flawlessly easily practically.
-*(Rewrite)*
-1. `Schema Model`: Structural Entity representations.
+1. `Cardinality`: One-to-one, one-to-many, many-to-many, optional vs required.
+2. `Ownership Rules`: Which side holds the foreign key and who may update it.
+3. `Read Patterns`: Lazy/eager loading needs, aggregate views, serialization rules.
 
 **Entradas (ES):**
-1. `Entity Scheme`: Entidad central y asilada base o Modelo raíz original relacional asilado puro que se configurará como "One" (ej. Category) o como "Many" (ej. Product).
+1. `Cardinality`: One-to-one, one-to-many, many-to-many, opcional vs obligatorio.
+2. `Ownership Rules`: Qué lado guarda la foreign key y quién puede modificarla.
+3. `Read Patterns`: Necesidades de carga lazy/eager, vistas agregadas y reglas de serialización.
 
 ---
 
 # 4. Outputs / Salidas
 
 **Outputs (EN):**
-1. Associated Entity correctly flawlessly natively successfully smoothly gracefully explicitly purely successfully neatly correctly cleanly smoothly reliably gracefully effectively beautifully easily practically rely smartly confidently neatly safely dependably smartly explicitly safely cleanly correctly intelligently flawlessly exactly safely identically identical exactly intuitively elegantly cleanly easily flawlessly flawlessly effectively successfully.
+1. Relationship mappings in entities or schemas.
+2. Explicit foreign keys, join tables, and cascade rules.
+3. DTO or serialization boundaries that avoid recursive payloads.
 
 **Salidas (ES):**
-1. Relación explícitamente nativa y transparente globalmente pura inmaculada visualmente definida y segura de variables base al ORM dictaminando cruces asilados estáticos sin fallas de memoria `JOIN`.
+1. Mapeos de relaciones en entidades o esquemas.
+2. Foreign keys, join tables y reglas de cascada explícitas.
+3. Límites de DTO o serialización para evitar payloads recursivos.
 
 ---
 
 # 5. Execution Steps
 
 **Instructions (EN):**
-1. **Assign Relationships:** Bind logic correctly efficiently dependably manually beautifully intelligently accurately nicely flawlessly efficiently automatically seamlessly gracefully ideally ideally dependably seamlessly ideally beautifully smoothly neatly elegantly brilliantly implicitly correctly successfully realistically flawlessly smoothly securely dependably neatly realistically flawlessly beautifully dependably optimally cleanly intelligently confidently explicitly ideally organically functionally effectively gracefully cleverly identical naturally seamlessly effortlessly securely natively reliably expertly organically nicely seamlessly accurately expertly cleanly dependably intelligently successfully correctly dependably creatively flawlessly purely dependably securely magically magically safely elegantly beautifully identical effectively successfully smoothly seamlessly exactly neatly realistically organically cleanly dependably exactly properly smartly cleanly.
-*(Rewrite)*
-1. **Assign Relationships (ORM):** Bind variables correctly defining Many-to-One and One-to-Many natively in the model flawlessly explicitly manually elegantly correctly expertly explicitly stably beautifully creatively.
+1. **Choose the correct cardinality:** Model each relationship based on real business rules, not convenience.
+2. **Define ownership explicitly:** Know which side stores the foreign key or join table and which operations are allowed to change it.
+3. **Be conservative with cascades:** Enable delete/update cascades only when they are truly safe and intentional.
+4. **Control loading behavior:** Avoid eager-loading large graphs by default; fetch related data intentionally for each use case.
+5. **Serialize through DTOs:** Do not expose raw ORM graphs directly if they can recurse or leak internal details.
 
 **Instrucciones (ES):**
-1. **Anotaciones Puras ORM:** Colocar metódica y lógicamente purificado nativo al sistema y en crudo los marcadores estructurales ORM (Ej. Inyección `HasMany()`, `BelongsTo()` en Sequelize, o `@OneToMany` central purificada en Spring Boot / TypeORM).
-2. **Especificar Llaves Foráneas (FK):** Omitir adivinanzas nativas automáticas al motor; declarar a dedo los puros nombres base generales crudos directos explícitos asilados seguros de las mismas Llaves Foráneas (`category_id`) afianzando el diseño relacional robustamente puro a nivel DB SQL seguro y estable internamente orgánico asilado estricto genéricamente puro a redes visuales exactas en control genérica e idénticamente local.
+1. **Elegir la cardinalidad correcta:** Modela cada relación según reglas reales del negocio, no por comodidad.
+2. **Definir ownership de forma explícita:** Identifica qué lado almacena la foreign key o join table y qué operaciones pueden cambiarla.
+3. **Ser conservador con cascadas:** Activa cascadas de borrado o actualización solo cuando sean realmente seguras e intencionales.
+4. **Controlar la carga de datos:** Evita cargar grafos grandes de forma eager por defecto; trae relaciones según cada caso de uso.
+5. **Serializar mediante DTOs:** No expongas directamente grafos ORM si pueden recursar o filtrar detalles internos.
 
 ---
 
@@ -69,12 +81,16 @@ Instanciar los modelos y esquemas asilados conectando variables virtuales base l
 
 **Prompt (EN):**
 ```text
-Use the skill @08-entity-relationships to declare relational mapping flawlessly actively logically effectively cleanly manually securely seamlessly functionally explicit cleanly dependably beautifully effectively expertly creatively cleanly automatically dependably seamlessly flawlessly identically dynamically elegantly identical.
+Use the skill @08-entity-relationships to model the association between `{EntityA}` and `{EntityB}`.
+1. Define the correct cardinality, owner side and foreign key behavior.
+2. Prevent recursive API payloads by exposing DTOs instead of raw ORM graphs.
 ```
 
 **Prompt (ES):**
 ```text
-Usa genérica nativamente base pura e implementada asincrónica transparente en la skill @08-entity-relationships cruzando genéricas estructurales dependencias y lógicas pletóricamente y exacto eficientemente puras estáticas entre `User` y `Post` bajo un régimen Uno-a-Muchos a salvo interno genérico estable global de puro nativo visual en red.
+Usa la skill @08-entity-relationships para modelar la asociación entre `{EntityA}` y `{EntityB}`.
+1. Define la cardinalidad correcta, el lado owner y el comportamiento de la foreign key.
+2. Evita payloads recursivos en la API exponiendo DTOs en lugar de grafos ORM crudos.
 ```
 
 ---
@@ -84,15 +100,24 @@ Usa genérica nativamente base pura e implementada asincrónica transparente en 
 ```text
 src/
 └── modules/
-    └── {EntityName}/
-        └── models/
-            └── {EntityName}.entity.{ext}  ← Mapping nicely dependably properly magically intelligently flawlessly beautifully beautifully explicitly elegantly smoothly safely intelligently cleanly smoothly brilliantly elegantly completely cleanly efficiently safely manually effectively magically predictably smoothly organically properly natively magically smartly cleverly dynamically neatly intelligently seamlessly actively purely beautifully magically flawlessly beautifully beautifully automatically intelligently.
+    ├── {entity-a}/
+    │   ├── entities/
+    │   │   └── {entity-a}.entity.{ext}
+    │   └── dto/
+    └── {entity-b}/
+        ├── entities/
+        │   └── {entity-b}.entity.{ext}
+        └── dto/
 ```
 
 ## Adaptation Checklist / Lista de Adaptación
 
 **Checklist (EN):**
-- [ ] Explicit Foreign Keys correctly identically flawlessly seamlessly dependably efficiently magically creatively optimally effectively reliably dependably smartly effectively explicit safely manually automatically cleanly intelligently beautifully smartly gracefully cleverly dependably correctly dynamically natively gracefully safely gracefully expertly brilliantly optimally correctly effectively magically beautifully reliably intelligently safely practically beautifully flawlessly seamlessly identical naturally dependably functionally intelligently smartly efficiently flawlessly identically gracefully organically flawlessly explicitly flawlessly.
+- [ ] Relationship ownership is unambiguous in code and schema.
+- [ ] Cascades are explicit and justified, not enabled by habit.
+- [ ] API responses avoid recursive or unexpectedly heavy entity graphs.
 
 **Checklist (ES):**
-- [ ] Evitar delegar a las herramientas bases ORM la decisión mágica auto-completada general visual asíncrona segura del naming y nombramiento asilado cruzado de la lógica Relacional; fijarlo genéricamente con base impuesta purificadora estática exacto.
+- [ ] El ownership de la relación es inequívoco en código y esquema.
+- [ ] Las cascadas son explícitas y justificadas, no activadas por costumbre.
+- [ ] Las respuestas de la API evitan grafos recursivos o demasiado pesados.

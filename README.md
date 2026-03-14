@@ -39,7 +39,7 @@
 🔹 **Zero Hallucinations:** Prevents AI from guessing. It gives them standard operating procedures (SOPs).  
 🔹 **Bilingual Engine:** Dual English/Spanish prompts maximize AI understanding.  
 🔹 **Modular:** 12 Frontend skills and 12 Backend skills to cover the entire development lifecycle.  
-🔹 **Universal:** Works flawlessly for React, Angular, Vue, Spring Boot, Express, Django, FastAPI, and more.  
+🔹 **Universal:** Derived from Angular/Spring teaching material, but rewritten as portable operating procedures for any modern frontend or backend stack.  
 
 ---
 
@@ -47,11 +47,19 @@
 
 **(EN):** Point your AI explicitly to the target folder and skill:
 > "Use the **@04-service-layer** skill located inside `skills-backend/` to implement my business logic."
-> "Use the **@03-routing-strategy** skill from `frontend-skills/` to setup my React Router layouts."
+> "Use the **@03-routing-strategy** skill from `frontend-skills/` to setup my routed layouts."
 
 **(ES):** Dirige a tu IA de manera explícita a la carpeta y skill objetivo:
 > "Usa la skill **@04-service-layer** ubicada adentro de `skills-backend/` para implementar mi lógica de negocio."
-> "Usa la skill **@03-routing-strategy** alojada en `frontend-skills/` configurando mis Layouts del React Router."
+> "Usa la skill **@03-routing-strategy** alojada en `frontend-skills/` para configurar mis layouts y rutas."
+
+---
+
+## ✅ Validation / Validación
+
+Run `npm run validate` before pushing changes. The validator checks every `SKILL.md`, JSON resource, and relative markdown link, and it also blocks accidental editorial artifacts from being published.
+
+Ejecuta `npm run validate` antes de subir cambios. El validador revisa cada `SKILL.md`, los recursos JSON y los enlaces markdown relativos, y además bloquea residuos editoriales accidentales antes de publicar.
 
 ---
 
@@ -66,13 +74,13 @@
 | **03** | [**routing-strategy**](./frontend-skills/03-routing-strategy/SKILL.md) | Layouts and Lazy Loading | Paginación y Carga Lenta URL | 🟡 Medium |
 | **04** | [**form-orchestration**](./frontend-skills/04-form-orchestration/SKILL.md) | Immutable generic state refs | Referencias inmutables estado | 🟢 Low |
 | **05** | [**ui-feedback-system**](./frontend-skills/05-ui-feedback-system/SKILL.md) | Toasts, Skeletons & Spinners | Mapeo carga, Esqueletos y Toast | 🟢 Low |
-| **06** | [**authentication-flow**](./frontend-skills/06-authentication-flow/SKILL.md) | JWT Hydration on LocalStorage | Hidratación JWT en LocalStorage | 🔴 High |
-| **07** | [**styling-system**](./frontend-skills/07-styling-system/SKILL.md) | Architecture CSS/Tailwind rules | Reglas Maestras CSS/Módulos | 🟢 Low |
-| **08** | [**state-management**](./frontend-skills/08-state-management/SKILL.md) | Zustand/Pinia/Redux patterns | Gestores Globales Reactivos | 🔴 High |
-| **09** | [**data-fetching**](./frontend-skills/09-data-fetching/SKILL.md) | Axios interceptors & Cache | Interceptores Red Axios/Cache | 🟡 Medium |
+| **06** | [**authentication-flow**](./frontend-skills/06-authentication-flow/SKILL.md) | Secure session bootstrap & logout | Bootstrap seguro de sesión y cierre controlado | 🔴 High |
+| **07** | [**styling-system**](./frontend-skills/07-styling-system/SKILL.md) | Scalable styling and design-token rules | Reglas escalables de estilos y design tokens | 🟢 Low |
+| **08** | [**state-management**](./frontend-skills/08-state-management/SKILL.md) | Focused shared state patterns | Estado compartido enfocado | 🔴 High |
+| **09** | [**data-fetching**](./frontend-skills/09-data-fetching/SKILL.md) | Shared API client & 401 handling | Cliente API compartido y manejo de 401 | 🔴 High |
 | **10** | [**advanced-navigation**](./frontend-skills/10-advanced-navigation/SKILL.md) | Breadcrumbs & URL pagination | Migas y Paginación UI (URL) | 🟢 Low |
-| **11** | [**baas-integration**](./frontend-skills/11-baas-integration/SKILL.md) | Firebase/Supabase Connectors | Inyección SDK Firebase nativa | 🔴 High |
-| **12** | [**route-guards**](./frontend-skills/12-route-guards/SKILL.md) | Protected routes Middlewares | Rutas Privadas e Interceptores | 🔴 High |
+| **11** | [**baas-integration**](./frontend-skills/11-baas-integration/SKILL.md) | BaaS provider integration | Integracion con proveedores BaaS | 🔴 High |
+| **12** | [**route-guards**](./frontend-skills/12-route-guards/SKILL.md) | Auth/guest guards with session bootstrap | Guards auth/guest con bootstrap de sesión | 🔴 High |
 
 ---
 
@@ -82,7 +90,7 @@
 
 | # | Skill Name | English Summary | Español (Resumen) | Risk |
 |:---:|---|---|---|:---:|
-| **01** | [**project-bootstrap**](./skills-backend/01-project-bootstrap/SKILL.md) | Express/Spring HTTP Setup | Setup de Motor HTTP Limpio | 🟢 Low |
+| **01** | [**project-bootstrap**](./skills-backend/01-project-bootstrap/SKILL.md) | Runtime bootstrap & health endpoint | Bootstrap del runtime y health endpoint | 🟢 Low |
 | **02** | [**modular-project-structure**](./skills-backend/02-modular-project-structure/SKILL.md) | Feature-based directory tree | Árbol de carpetas por Features | 🟢 Low |
 | **03** | [**rest-api-design**](./skills-backend/03-rest-api-design/SKILL.md) | REST generic endpoints | Puntos de Red Genéricos REST | 🟢 Low |
 | **04** | [**service-layer**](./skills-backend/04-service-layer/SKILL.md) | Decoupled Business logic | Lógica de Negocio Desacoplada | 🟢 Low |

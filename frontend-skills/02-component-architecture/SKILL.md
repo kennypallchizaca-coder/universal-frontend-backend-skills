@@ -1,6 +1,6 @@
 ---
 name: 02-component-architecture
-description: "Implements the Smart vs. Presentational (Dumb) Components architectural pattern. Isolates the visual interface layer from the HTTP/State business logic to maximize reusability across any frontend framework."
+description: "Separates container logic from presentational UI so frontend features stay testable, reusable and framework-agnostic."
 risk: low
 universal: true
 source: community
@@ -10,62 +10,70 @@ date_added: "2026-03-10"
 # 1. Skill Description
 
 **Description (EN):**
-Components that directly fetch HTTP data, orchestrate Global Store injections, AND manage complex HTML visualization natively become unmaintainable monolithic entities instantly. This skill establishes the Container/Presentational design pattern delegating intelligent business logic strictly outside visual rendering hierarchies making testing significantly simpler natively.
+Frontend components become hard to maintain when data fetching, state orchestration, and rendering all live in the same file. This skill organizes features into container and presentational layers so UI remains reusable and behavior stays easier to test.
 
 **Descripción (ES):**
-Los componentes que obtienen datos HTTP directamente, orquestan inyecciones del Store Global Y gestionan visualizaciones HTML complejas nativamente se convierten instantáneamente en entidades monolíticas inmantenibles. Esta skill establece el patrón de diseño Contenedor/Presentacional delegando la lógica de negocio inteligente estrictamente fuera de las jerarquías de renderizado visual, haciendo que las pruebas sean significativamente más simples.
+Los componentes frontend se vuelven difíciles de mantener cuando la carga de datos, la orquestación del estado y el render viven en el mismo archivo. Esta skill organiza los features en capas contenedoras y presentacionales para que la UI sea reutilizable y el comportamiento resulte más fácil de probar.
 
 ---
 
 # 2. Skill Objective
 
 **Objective (EN):**
-Decouple Frontend components into logical functional categories: Smart (Container) and Dumb (Presentational) components.
-- Use this skill when: Building views demanding complex Server fetch lifecycles alongside deeply nested Custom UI Elements mapping explicit data.
-- Do not use this skill when: Constructing single-hierarchy generic Utility Layout wrappers lacking state execution completely.
+Build components with clear separation between visual rendering and feature logic.
+- Use this skill when: A view coordinates API calls, store reads, derived state, or non-trivial user interactions.
+- Do not use this skill when: A tiny purely visual component already has no business logic to extract.
 
 **Objetivo (ES):**
-Desacoplar componentes del Frontend en categorías funcionales lógicas: componentes Smart (Contenedores) y Dumb (Presentacionales).
-- Úsese cuando: Se construyen vistas que exigen ciclos de vida de obtención de Servidor complejos junto con Elementos UI Personalizados profundamente anidados mapeando datos explícitos.
-- No se use cuando: Se construyen envolturas Utility Layout genéricas de una sola jerarquía carentes completamente de ejecución de estado.
+Construir componentes con una separación clara entre render visual y lógica del feature.
+- Úsese cuando: Una vista coordine llamadas API, lecturas de store, estado derivado o interacciones no triviales.
+- No se use cuando: Un componente pequeño y puramente visual ya no tenga lógica de negocio para extraer.
 
 ---
 
 # 3. Inputs / Entradas
 
 **Inputs (EN):**
-1. `Feature Domain`: E.g., UserProfiles or InvoiceCheckout.
-2. `Data Source`: Network Fetcher or Global State store mapping target variables natively.
+1. `Feature Domain`: The business area, such as invoices, users, or products.
+2. `State Sources`: Repository calls, route params, local state, or global store reads.
+3. `UI Contract`: Props, inputs, emitted events, slots, or callbacks required by the visual layer.
 
 **Entradas (ES):**
-1. `Feature Domain`: Ej. UserProfiles o InvoiceCheckout.
-2. `Data Source`: Fetcher de Red o Store de Estado Global mapeando nativamente variables objetivo.
+1. `Feature Domain`: El área del negocio, como invoices, users o products.
+2. `State Sources`: Llamadas a repositorios, route params, estado local o lecturas del store global.
+3. `UI Contract`: Props, inputs, eventos emitidos, slots o callbacks que requiere la capa visual.
 
 ---
 
 # 4. Outputs / Salidas
 
 **Outputs (EN):**
-1. Pure Dumb Components executing UI mapping entirely reliant on explicit `Props` or `@Input()` definitions natively.
-2. A Parent Smart View rendering HTTP lifecycles passing parsed target properties downward into the explicit Dumb interfaces efficiently.
+1. Container or smart components responsible for orchestration.
+2. Presentational or dumb components focused on rendering and user interaction.
+3. A cleaner feature boundary that is easier to test and refactor.
 
 **Salidas (ES):**
-1. Componentes Dumb puros ejecutando mapeo UI apoyados completamente en definiciones explícitas de `Props` o `@Input()` nativamente.
-2. Una Vista Smart Padre renderizando ciclos de vida HTTP pasando propiedades objetivo parseadas hacia abajo a las interfaces Dumb de manera eficiente.
+1. Componentes contenedores o smart responsables de la orquestación.
+2. Componentes presentacionales o dumb enfocados en render y en interacciones de usuario.
+3. Un límite de feature más limpio, más fácil de probar y refactorizar.
 
 ---
 
 # 5. Execution Steps
 
 **Instructions (EN):**
-1. **Extract Dumb Components:** Generate generic functional interface components mapping exclusively visual code representations directly. They MUST NOT import Http clients (`axios`) or Routers (`vue-router`). Identify all interactive dependencies extracting them upward via `@Output()` EventEmitters or standard callback prop mapping parameters (e.g. `onDelete={() => {}}`).
-2. **Engineer the Smart Container:** Implement a Top-Level Route view resolving asynchronous business dependencies (`useEffect` or `ngOnInit` HTTP fetches, reading Redux/Zustand logic). 
-3. **Assemble Interaction:** Render the mapped Dumb interfaces downward within the Smart layout wrapper injecting required variable instances cleanly mapping return events recursively correctly.
+1. **Move orchestration upward:** Let the top-level feature view read repositories, route state, or stores.
+2. **Keep presentational components transport-agnostic:** They should not know how data was fetched or where it came from.
+3. **Pass explicit contracts downward:** Use typed props, inputs, slots, or callbacks instead of hidden shared state.
+4. **Return interactions upward:** Emit events or callbacks such as `onEdit`, `onDelete`, or `submit`.
+5. **Test UI in isolation:** Presentational components should render correctly with mock data and no server dependency.
 
 **Instrucciones (ES):**
-1. **Extraer Componentes Dumb:** Genera componentes de interfaz funcional genérica mapeando exclusivamente representaciones de código visual directamente. NO DEBEN importar clientes Http (`axios`) o Routers (`vue-router`). Identifica todas las dependencias interactivas extrayéndolas hacia arriba a través de EventEmitters `@Output()` o parámetros de mapeo de props de callback estándar (ej. `onDelete={() => {}}`).
-2. **Ingeniar el Contenedor Smart:** Implementa una vista Route de Nivel Superior resolviendo dependencias asíncronas de negocio (obtenciones HTTP de `useEffect` o `ngOnInit`, lectura de lógica Redux/Zustand).
-3. **Ensamblar Interacción:** Renderiza hacia abajo las interfaces Dumb mapeadas dentro de la envoltura layout Smart inyectando instancias de variables requeridas mapeando limpiamente eventos de retorno de manera recursiva correctamente.
+1. **Subir la orquestación hacia arriba:** Deja que la vista principal del feature lea repositorios, estado de ruta o stores.
+2. **Mantener los componentes presentacionales agnósticos al transporte:** No deberían saber cómo se obtuvo la data ni de dónde vino.
+3. **Pasar contratos explícitos hacia abajo:** Usa props, inputs, slots o callbacks tipados en lugar de estado compartido oculto.
+4. **Subir interacciones hacia arriba:** Emite eventos o callbacks como `onEdit`, `onDelete` o `submit`.
+5. **Probar la UI en aislamiento:** Los componentes presentacionales deben renderizar correctamente con mocks y sin dependencia del servidor.
 
 ---
 
@@ -73,16 +81,16 @@ Desacoplar componentes del Frontend en categorías funcionales lógicas: compone
 
 **Prompt (EN):**
 ```text
-Use the skill @02-component-architecture to rebuild the `{ComponentName}` module into a robust Container mapping pattern natively.
-1. Extract the pure HTML logic into a generic Dumb Component expecting `{ExpectedProps}` propagating an `onAction` callback parameter exactly.
-2. Connect the asynchronous Service logic internally generating the Smart Wrapper View feeding explicit reactive variables natively without mutating them downward.
+Use the skill @02-component-architecture to split `{FeatureName}` into container and presentational layers.
+1. Keep data loading and state orchestration in the feature view.
+2. Move reusable UI rendering into a pure presentational component with an explicit contract.
 ```
 
 **Prompt (ES):**
 ```text
-Usa la skill @02-component-architecture para reconstruir el módulo `{ComponentName}` en un patrón robusto de Contenedor nativamente.
-1. Extrae la lógica HTML pura a un Componente Dumb genérico que espere `{ExpectedProps}` propagando un parámetro callback `onAction` exactamente.
-2. Conecta la lógica de Servicio asíncrona generando internamente la Vista Envoltura Smart alimentando variables reactivas explícitas nativamente sin mutarlas hacia abajo.
+Usa la skill @02-component-architecture para dividir `{FeatureName}` en capas contenedoras y presentacionales.
+1. Mantén la carga de datos y la orquestación del estado en la vista del feature.
+2. Mueve el render reutilizable de UI a un componente presentacional puro con contrato explícito.
 ```
 
 ---
@@ -92,21 +100,22 @@ Usa la skill @02-component-architecture para reconstruir el módulo `{ComponentN
 ```text
 src/
 └── features/
-    └── {EntityName}/
+    └── {FeatureName}/
         ├── views/
-        │   └── {EntityName}List.view.{ext}     ← Smart Container (Reads API)
-        └── components/
-            └── {EntityName}Table.{ext}         ← Dumb Presentational (Accepts list as Props)
+        │   └── {FeatureName}View.{ext}
+        ├── components/
+        │   └── {FeatureName}Table.{ext}
+        └── api/ or services/
 ```
 
 ## Adaptation Checklist / Lista de Adaptación
 
 **Checklist (EN):**
-- [ ] Confirm no HTTP Client or Router dependency executes inside the `components/` generic folder boundary natively.
-- [ ] Validate Data Object state mutation entirely originates explicitly inside the View component logic exclusively avoiding bidirectional prop loops.
-- [ ] Prove the Dumb Component renders identically using raw Mock Array object properties ignoring server availability entirely.
+- [ ] Presentational components do not fetch data or depend on transport libraries.
+- [ ] Container components own repository calls, route parsing, and feature orchestration.
+- [ ] Visual components can be rendered with mocks in isolation.
 
 **Checklist (ES):**
-- [ ] Confirmar que no se ejecuta ninguna dependencia de Cliente HTTP o Router dentro del límite de la carpeta genérica `components/` de forma nativa.
-- [ ] Validar que la mutación de estado del Objeto de Datos se origina enteramente y de manera explícita dentro de la lógica del componente Vista evitando exclusivamente bucles de props bidireccionales.
-- [ ] Demostrar que el Componente Dumb renderiza de forma idéntica usando propiedades crudas de un objeto Mock Array ignorando completamente la disponibilidad del servidor.
+- [ ] Los componentes presentacionales no consumen datos ni dependen de librerías de transporte.
+- [ ] Los componentes contenedores controlan las llamadas a repositorios, el parseo de rutas y la orquestación del feature.
+- [ ] Los componentes visuales pueden renderizarse con mocks en aislamiento.

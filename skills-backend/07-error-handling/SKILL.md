@@ -1,7 +1,7 @@
 ---
 name: 07-error-handling
-description: "Establishes a centralized explicit generic Error Interception pattern successfully smoothly cleanly correctly naturally effortlessly flawlessly cleanly."
-risk: high
+description: "Centralizes backend error handling so failures are logged consistently and clients receive safe, predictable error responses."
+risk: medium
 universal: true
 source: community
 date_added: "2026-03-10"
@@ -10,56 +10,70 @@ date_added: "2026-03-10"
 # 1. Skill Description
 
 **Description (EN):**
-Burying hundreds of scattered `try/catch` sequences directly manually cleanly intelligently exactly efficiently smartly expertly flawlessly completely correctly effortlessly manually logically cleanly identically smoothly securely beautifully precisely successfully practically natively dependably correctly seamlessly dependably smartly gracefully exactly completely smoothly explicitly dependably explicitly completely smartly dependably functionally dynamically effectively expertly smartly securely flawlessly naturally optimally elegantly brilliantly intelligently identically elegantly smoothly cleanly effectively safely expertly gracefully cleverly cleanly identical intelligently dependably predictably successfully brilliantly safely cleanly dependably confidently effortlessly naturally cleanly cleverly securely flawlessly seamlessly intuitively seamlessly intelligently safely optimally smoothly nicely successfully flawlessly nicely brilliantly explicit optimally identical intelligently effectively beautifully reliably correctly precisely effortlessly completely securely cleanly intuitively successfully optimally optimally properly seamlessly flawlessly reliably organically identically.
-*(Rewriting Description cleanly)*
-Burying hundreds of scattered `try/catch` sequences inside specific generic controllers actively pollutes logic explicitly. By delegating an exact generic Global Exception Filter reliably securely organically, this skill enforces a single generic explicit layer properly cleanly neatly securely isolating generic errors intelligently reliably.
+Scattered try/catch blocks create inconsistent APIs and hide operational problems. This skill establishes a global error strategy that separates business exceptions from unexpected failures and translates both into stable response contracts.
 
 **Descripción (ES):**
-Enterrar por doquier bloques crudos y generalizados locales base en cientos de cajas `try/catch` dentro de los asilados bloques nativos de Controladores ensucia inexorablemente y colapsa la legibilidad operativa genérica del código en modo visual y orgánico centralizado. Esta skill concentra todos, pero a la puridad máxima local seguros estables posibles fallos hacia un puro, nativo, central y globalizador Sistema en Intercepción (Global Exception Filter) ordenando un envío simétrico estandarizando e infalible seguro purificando formatos JSON a resguardo limpio (`{"error": "message"}`).
+Los `try/catch` dispersos crean APIs inconsistentes y esconden problemas operativos. Esta skill establece una estrategia global de errores que separa excepciones de negocio de fallos inesperados y traduce ambos a contratos de respuesta estables.
 
 ---
 
 # 2. Skill Objective
 
 **Objective (EN):**
-Implement a centralized HTTP code interceptor nicely seamlessly correctly efficiently manually cleanly successfully correctly elegantly organically dependably expertly beautifully smoothly expertly flawlessly logically organically gracefully successfully smoothly magically identical reliably successfully dependably cleanly accurately efficiently efficiently functionally safely cleanly elegantly manually realistically dependably smartly dependably cleanly effortlessly gracefully automatically expertly expertly neatly predictably realistically correctly organically securely identically dependably correctly seamlessly gracefully intelligently realistically intelligently smartly intelligently identical safely magically exactly successfully smartly dependably dependably explicit correctly dependably efficiently intelligently nicely realistically magically practically naturally cleanly seamlessly predictably cleanly reliably elegantly exactly completely organically safely efficiently creatively correctly intelligently confidently effectively organically neatly nicely optimally smoothly successfully smartly smartly magically securely identical magically dependably efficiently elegantly smartly cleanly expertly perfectly magically flawlessly safely identical correctly explicit elegantly smoothly intelligently smartly securely explicitly dependably optimally expertly creatively exactly intelligently cleanly cleanly optimally smartly exactly successfully successfully seamlessly neatly expertly predictably seamlessly seamlessly expertly cleanly effortlessly predictably dependably seamlessly smoothly intelligently organically cleverly reliably cleanly intelligently gracefully smartly smartly flawlessly cleanly excellently smartly gracefully elegantly dependably brilliantly smoothly flawlessly realistically practically gracefully expertly reliably safely dependably nicely cleanly reliably explicitly flawlessly effectively predictably naturally dependably efficiently identical cleverly creatively confidently magically properly.
-*(I will rewrite)*
-Implement a programmatic global error interceptor seamlessly correctly intelligently intuitively safely.
+Standardize how the backend throws, logs, and returns errors.
+- Use this skill when: The project exposes HTTP endpoints, background jobs, or external integrations that can fail.
+- Do not use this skill when: You are only writing throwaway scripts with no client-facing contract.
 
 **Objetivo (ES):**
-Implementar y anudar estáticamente un Interceptor a nivel root de red atando nativamente de base constante un sistema recogepérdidas (Catch) de Errores locales seguros manejando estatus base fiables crudos HTTP globales exactos eficientes genéricamente constantes sin bloqueos (Ej. Status `404`, `500`, `400`).
+Estandarizar cómo el backend lanza, registra y devuelve errores.
+- Úsese cuando: El proyecto exponga endpoints HTTP, jobs en segundo plano o integraciones externas que puedan fallar.
+- No se use cuando: Solo se escriban scripts descartables sin contrato hacia clientes.
 
 ---
 
 # 3. Inputs / Entradas
 
 **Inputs (EN):**
-1. `Error Formatter`: Output schema formatting efficiently smoothly brilliantly seamlessly nicely smoothly exactly intuitively realistically naturally correctly.
+1. `Error Types`: Validation, not found, conflict, unauthorized, forbidden, external dependency failures.
+2. `Logging Strategy`: Console, structured logger, APM, or centralized observability.
+3. `Response Schema`: Standard error body expected by clients.
 
 **Entradas (ES):**
-1. `Error Formatter`: Envoltorio genérico dictando el JSON estandarizado local (ej. estructura limpia pura general nativa tipo `{ statusCode, message, timestamp }`).
+1. `Error Types`: Validación, no encontrado, conflicto, no autorizado, prohibido y fallos de dependencias externas.
+2. `Logging Strategy`: Consola, logger estructurado, APM u observabilidad centralizada.
+3. `Response Schema`: Cuerpo estándar de error esperado por clientes.
 
 ---
 
 # 4. Outputs / Salidas
 
 **Outputs (EN):**
-1. Global Error Handler cleanly cleanly ideally magically flawlessly smoothly elegantly cleanly natively expertly correctly smoothly dependably.
+1. Domain/application error classes or enums.
+2. A global exception filter, middleware, or handler.
+3. Safe client responses plus actionable logs for operators.
 
 **Salidas (ES):**
-1. Clase asilada global estandarizante de Middleware `GlobalErrorHandler` mapeando de fondo asincrónico a base general cruda general sin bloqueos base estandarizados inmaculados limpios asilados internos lógicos asilados seguros idénticos seguros globales exactos y estables fijos.
+1. Clases o enums de errores de dominio o aplicación.
+2. Un filtro, middleware o handler global de excepciones.
+3. Respuestas seguras para clientes y logs accionables para operadores.
 
 ---
 
 # 5. Execution Steps
 
 **Instructions (EN):**
-1. **Initialize Filter Pattern:** Construct interceptors seamlessly magically purely functionally cleanly smoothly dependably intuitively correctly smoothly cleanly.
-2. **Standardize Fallbacks:** Abstract generic internal server responses perfectly easily creatively gracefully safely intelligently confidently beautifully gracefully functionally intelligently smoothly ideally.
+1. **Define known error categories:** Model validation, not-found, conflict, auth, and dependency failures explicitly.
+2. **Translate errors centrally:** Use a single middleware/filter/handler to map exceptions to HTTP status codes and the shared error schema.
+3. **Log with context:** Include request ID, route, actor, and dependency details when available, but avoid leaking secrets or PII.
+4. **Separate expected from unexpected:** Business errors should be cleanly exposed; unknown errors should return generic `500` responses.
+5. **Keep controllers/services focused:** Throw meaningful errors and let the global layer decide how to serialize them.
 
 **Instrucciones (ES):**
-1. **Inicialización Rutina de Interceptor Base Genérica (Global Filter):** Construir el anclaje central global atajando promesas rotas, errores fatales al parseo y variables nulas en tiempo de ejecución asegurando interrupciones asincrónicas limpias y purificando la cascada original asilando y entregando un fallo `500`.
-2. **Definiciones Excepcionales Nativas:** Elaborar bases extensoras genéricas orgánicas del nativismo puro, creando cajas o clases de fallo tales como puras genéricas `NotFoundException`, `BadRequestException` atajando sin bloqueos visuales a nivel purificado orgánicamente nativo sin errores logeando con seguridad.
+1. **Definir categorías conocidas:** Modela explícitamente validación, no encontrado, conflicto, auth y fallos de dependencias.
+2. **Traducir errores en un punto central:** Usa un middleware, filtro o handler único para convertir excepciones en códigos HTTP y en el esquema compartido de error.
+3. **Loggear con contexto:** Incluye request ID, ruta, actor y detalles de dependencias cuando existan, pero sin filtrar secretos ni PII.
+4. **Separar lo esperado de lo inesperado:** Los errores de negocio pueden exponerse limpiamente; los desconocidos deben devolver `500` genérico.
+5. **Mantener foco en controladores y servicios:** Lanza errores significativos y deja que la capa global decida cómo serializarlos.
 
 ---
 
@@ -67,12 +81,16 @@ Implementar y anudar estáticamente un Interceptor a nivel root de red atando na
 
 **Prompt (EN):**
 ```text
-Use the skill @07-error-handling mapping correctly successfully expertly creatively organically effectively identically dynamically exactly securely intelligently natively smoothly organically intelligently smoothly flawlessly flawlessly dependably nicely successfully expertly accurately smartly cleanly smartly nicely identically smoothly reliably explicitly smartly cleanly magically flawlessly functionally identical ideally cleverly smartly beautifully explicitly cleanly exactly exactly smoothly seamlessly correctly optimally gracefully successfully intuitively exactly realistically organically identical intelligently functionally dependably dependably carefully brilliantly flawlessly elegantly seamlessly cleanly expertly cleanly exactly successfully cleanly intelligently gracefully successfully confidently neatly brilliantly identical correctly intelligently correctly confidently beautifully confidently correctly confidently cleanly reliably gracefully actively cleanly safely intelligently organically dependably smoothly dependably nicely intelligently flawlessly identical smartly predictably excellently explicit optimally identically effortlessly dependably intuitively identical expertly effectively efficiently organically explicit seamlessly accurately safely brilliantly smartly seamlessly organically natively dependably identically automatically expertly smoothly naturally reliably magically logically identical naturally cleanly magically realistically explicitly dependably magically organically seamlessly gracefully dependably gracefully smartly magically functionally explicitly cleanly logically instinctively smartly identically predictably smartly smartly explicitly natively neatly effortlessly gracefully smartly cleanly flawlessly smartly seamlessly smartly identically flawlessly exactly predictably effectively intelligently organically brilliantly cleanly intuitively brilliantly identical smoothly realistically carefully identical realistically successfully properly optimally organically efficiently purely cleverly cleverly gracefully dependably dynamically ideally seamlessly efficiently securely ideally cleanly cleanly realistically cleanly brilliantly confidently cleanly successfully intelligently cleanly dependably explicitly securely nicely seamlessly explicitly.
+Use the skill @07-error-handling to standardize backend failures.
+1. Create application error types for validation, not-found, conflict and auth cases.
+2. Add a global handler that logs context and returns a safe shared error schema.
 ```
 
 **Prompt (ES):**
 ```text
-Usa genéricamente con base pura y nativa asincrónicamente @07-error-handling integrando una clase asilada y bloque genérico seguro atrapador Global Middleware puro natural interceptando de base general los retornos a cliente con estándar { statusCode, message }.
+Usa la skill @07-error-handling para estandarizar los fallos del backend.
+1. Crea tipos de error de aplicación para validación, no encontrado, conflicto y auth.
+2. Agrega un handler global que registre contexto y devuelva un esquema de error seguro y compartido.
 ```
 
 ---
@@ -81,15 +99,26 @@ Usa genéricamente con base pura y nativa asincrónicamente @07-error-handling i
 
 ```text
 src/
-└── core/
-    └── filters/
-        └── global-error.filter.{ext}  ← Mapping nicely dependably safely accurately seamlessly smoothly expertly gracefully safely naturally dependably dependably effortlessly smartly effortlessly dependably organically cleanly dependably logically successfully gracefully smoothly properly perfectly dependably smoothly beautifully dynamically cleanly appropriately neatly elegantly creatively completely beautifully smartly.
+├── core/
+│   ├── errors/
+│   │   ├── app-error.{ext}
+│   │   └── error-codes.{ext}
+│   ├── logging/
+│   └── http/
+│       └── error-handler.{ext}
+└── modules/
+    └── {feature}/
+        └── {feature}.service.{ext}
 ```
 
 ## Adaptation Checklist / Lista de Adaptación
 
 **Checklist (EN):**
-- [ ] Confirm Error mapping explicitly safely efficiently realistically explicitly seamlessly functionally exactly dependably nicely automatically confidently identical neatly cleanly expertly.
+- [ ] Unknown failures return a safe `500` response without stack traces in production.
+- [ ] Validation and domain errors map to deterministic status codes.
+- [ ] Logs contain enough context to debug incidents without exposing secrets.
 
 **Checklist (ES):**
-- [ ] Verificar genéricamente e impedir nativa a red desde código visual a terminal el envío del `stack trace` base local original de memoria de base datos (`SQLException`) de red hacia los visuales genéricos HTTP purificando genéricas orgánicas puras bases, y filtrarlo estandarizado como `Internal Server Error`.
+- [ ] Los fallos desconocidos devuelven un `500` seguro sin stack traces en producción.
+- [ ] Los errores de validación y dominio mapean a códigos deterministas.
+- [ ] Los logs contienen contexto suficiente para depurar sin exponer secretos.

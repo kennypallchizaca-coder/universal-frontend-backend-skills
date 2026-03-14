@@ -20,12 +20,18 @@
 **(EN):**
 1. Copy the `skills-backend/` folder into your AI assistant workspace.
 2. Ask your agent explicitly:
-> "Use the **@04-service-layer** skill to implement the `OrderService` for my Django project."
+> "Use the **@04-service-layer** skill to implement the `OrderService` for my backend project."
 
 **(ES):**
 1. Copia la carpeta `skills-backend/` dentro de tu espacio de asistente IA.
 2. Pide a tu agente explícitamente:
-> "Usa la skill **@04-service-layer** para implementar el `OrderService` para mi proyecto en Django."
+> "Usa la skill **@04-service-layer** para implementar el `OrderService` para mi proyecto backend."
+
+---
+
+## Validation
+
+Run `npm run validate` before publishing updates to verify every skill file, relative markdown link, and JSON schema in this repository.
 
 ---
 

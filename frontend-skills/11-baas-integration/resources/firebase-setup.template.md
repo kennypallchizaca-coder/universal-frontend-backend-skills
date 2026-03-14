@@ -1,10 +1,15 @@
 # Firebase & Firestore Matrix
 
-Las aplicaciones Serverless sin backend de Node.js consumen la API de firebase inyectando App, Auth y Database como singletons globales.
+Use the official SDK and keep privileged logic behind security rules or server-side functions.
+
+Security rules:
+- Client config values can be public.
+- Service-account credentials and admin SDK usage must stay server-side.
+- Sensitive writes should be protected by Firestore Rules, App Check, Cloud Functions, or equivalent server controls.
 
 ---
 
-## AngularFire (Oficial SDK)
+## AngularFire
 
 Filename: `src/app/app.config.ts`
 ```typescript
@@ -18,26 +23,25 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
-  ]
+    provideFirestore(() => getFirestore()),
+  ],
 };
 ```
 
 Filename: `src/app/core/services/firebase/auth.service.ts`
 ```typescript
-import { Injectable, inject, signal } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, user, signOut } from '@angular/fire/auth';
-import { from } from 'rxjs'; // To convert raw Web Promises to RxJS
+import { Injectable, inject } from '@angular/core';
+import { Auth, signInWithEmailAndPassword, signOut, user } from '@angular/fire/auth';
+import { from } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private auth = inject(Auth);
-  
-  // Reactivo: Si FirebaseAuth cambia el status lo emite a los Guardias de Rutas (Skill 04)
-  user$ = user(this.auth); 
 
-  login(email: string, pass: string) {
-    return from(signInWithEmailAndPassword(this.auth, email, pass));
+  user$ = user(this.auth);
+
+  login(email: string, password: string) {
+    return from(signInWithEmailAndPassword(this.auth, email, password));
   }
 
   logout() {
@@ -48,13 +52,11 @@ export class AuthService {
 
 ---
 
-## React / Astro (Firebase SDK V9)
+## React / Vue / Astro (Firebase SDK v9+)
 
-En ecosistemas Vanilla, React o Vue, exportamos los punteros singletons desde un archivo `firebase.ts` en `api` o `services`.
-
-Filename: `src/shared/api/firebase.ts`
+Filename: `src/shared/baas/firebase.ts`
 ```typescript
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
@@ -64,32 +66,39 @@ const firebaseConfig = {
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-const app = initializeApp(firebaseConfig);
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 ```
 
-Filename: `src/features/favorites/services/favorites.service.ts`
+Filename: `src/features/favorites/services/favorites.repository.ts`
 ```typescript
-import { collection, getDocs, addDoc } from 'firebase/firestore';
-import { db } from '@/shared/api/firebase';
+import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { db } from '@/shared/baas/firebase';
 
-const favCollection = collection(db, 'favoritos');
+interface FavoriteInput {
+  productId: string;
+  name: string;
+}
 
-export const FavoritesResource = {
-  getAll: async () => {
-    const snapshot = await getDocs(favCollection);
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+const favoritesCollection = collection(db, 'favorites');
+
+export const FavoritesRepository = {
+  async findAll() {
+    const snapshot = await getDocs(favoritesCollection);
+    return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   },
-  
-  create: async (data: any) => {
-    return await addDoc(favCollection, data);
-  }
+
+  async create(data: FavoriteInput) {
+    return addDoc(favoritesCollection, data);
+  },
 };
-// Then in a Smart Dashboard Component, you just say:
-// const data = await FavoritesResource.getAll();
-// sin jamás tocar axios.
 ```
+
+Client-side warning:
+- Do not put admin logic in this repository.
+- Use Cloud Functions or your own backend for privileged operations.

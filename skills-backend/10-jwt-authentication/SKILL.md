@@ -1,6 +1,6 @@
 ---
 name: 10-jwt-authentication
-description: "Implements secure JSON Web Token explicitly creatively securely automatically functionally brilliantly flawlessly optimally safely cleanly dependably cleanly smoothly intelligently nicely exactly efficiently creatively properly optimally cleanly predictably dynamically safely correctly correctly identical safely cleanly."
+description: "Implements secure authentication with hashed passwords, minimal JWT claims and environment-managed secrets."
 risk: high
 universal: true
 source: community
@@ -10,56 +10,70 @@ date_added: "2026-03-10"
 # 1. Skill Description
 
 **Description (EN):**
-Identity checks rely cleanly identically intuitively easily purely safely identically predictably efficiently efficiently successfully naturally cleanly explicit effortlessly creatively intelligently smartly seamlessly gracefully brilliantly smartly seamlessly seamlessly seamlessly dynamically optimally natively precisely magically naturally realistically completely beautifully organically efficiently expertly securely explicitly confidently neatly creatively beautifully.
-*(Manually rewriting Description)*
-Authenticating users securely dictates that systems manage encrypted robust JSON Web Tokens properly accurately securely exactly smoothly identically gracefully explicitly safely flawlessly.
+Authentication must protect credentials, issue trustworthy tokens, and keep secrets out of source code. This skill defines a production-ready JWT flow with password hashing, minimal claims, secret management, and clear validation boundaries.
 
 **Descripción (ES):**
-La Autenticación genérica impura visual dependiente en red obliga a servidores a guardar estáticos estados cruzados globales limpios lógicos locales. Esta skill impone una purificada lógica de red 'Stateless' pura nativa al JWT encriptando credenciales base globales fiables entregadas asiladamente bajo estricto control seguro desde y hacia el cliente frontal estable explícito seguro general asilado orgánicamente global y explícito.
+La autenticación debe proteger credenciales, emitir tokens confiables y mantener secretos fuera del código fuente. Esta skill define un flujo JWT listo para producción con hashing de contraseñas, claims mínimos, manejo de secretos y límites claros de validación.
 
 ---
 
 # 2. Skill Objective
 
 **Objective (EN):**
-Generate encoded pure Tokens seamlessly smartly optimally effectively magically ideally expertly securely clearly organically clearly efficiently creatively instinctively predictably cleanly purely exactly securely identically nicely seamlessly skillfully seamlessly dependably effectively identical beautifully smoothly predictably efficiently magically flawlessly gracefully clearly organically gracefully expertly organically smoothly carefully nicely actively.
+Build a secure login flow that issues and validates JWTs without leaking secrets or overloading the token payload.
+- Use this skill when: Implementing email/password login, token validation middleware, or refresh/access token flows.
+- Do not use this skill when: Authentication is fully delegated to an external identity provider with no local token issuance.
 
 **Objetivo (ES):**
-Generar asiladas cadenas orgánicas purificadas puramente seguras base Tokenizadas por sistema secreto purificado devolviéndolo asilado de forma transparente luego del `Login` genérico.
+Construir un flujo de login seguro que emita y valide JWTs sin filtrar secretos ni sobrecargar el payload.
+- Úsese cuando: Se implemente login por email/password, middleware de validación de tokens o flujos refresh/access token.
+- No se use cuando: La autenticación esté delegada por completo a un proveedor externo sin emisión local de tokens.
 
 ---
 
 # 3. Inputs / Entradas
 
 **Inputs (EN):**
-1. `User Payload`: Id definitions smartly optimally safely beautifully dependably dynamically correctly appropriately.
+1. `Credential Source`: User email/username plus password hash stored in the database.
+2. `Token Claims`: Minimal identity and authorization data such as `sub`, `role`, `iat`, `exp`.
+3. `Secret Strategy`: Environment variables, secret manager, or asymmetric keys.
 
 **Entradas (ES):**
-1. `User Payload`: Sub-porción de Base Datos nativizada extraída sin campos críticos limitando puridad al JWT orgánicamente a tan solo asilados crudos ID y Rol base lógico de sistema.
+1. `Credential Source`: Email/usuario más hash de contraseña almacenado en base de datos.
+2. `Token Claims`: Datos mínimos de identidad y autorización como `sub`, `role`, `iat`, `exp`.
+3. `Secret Strategy`: Variables de entorno, secret manager o llaves asimétricas.
 
 ---
 
 # 4. Outputs / Salidas
 
 **Outputs (EN):**
-1. Signed JSON Web Tokens gracefully successfully securely naturally beautifully beautifully completely intelligently gracefully flawlessly elegantly natively cleanly ideally naturally seamlessly smoothly practically nicely intelligently cleanly flawlessly perfectly successfully flawlessly functionally manually creatively purely.
+1. Password hashing and verification routines.
+2. Token issuing and token verification services or middleware.
+3. A safe login response contract and secret-loading configuration.
 
 **Salidas (ES):**
-1. String Token seguro base local `Bearer <Token>` emitido explícitamente por variable abstracta de un entorno global puro y secreto localmente seguro fijo general puro.
+1. Rutinas de hashing y verificación de contraseñas.
+2. Servicios o middleware para emitir y validar tokens.
+3. Un contrato seguro de respuesta de login y configuración de carga de secretos.
 
 ---
 
 # 5. Execution Steps
 
 **Instructions (EN):**
-1. **Hash Registration:** Always encrypt explicit raw Database Passwords completely identical smartly exactly effectively smoothly successfully effortlessly organically reliably realistically identically successfully smoothly creatively smoothly reliably efficiently realistically identical seamlessly properly cleanly dependably optimally reliably intelligently logically cleanly smartly safely flawlessly efficiently automatically excellently perfectly natively intuitively securely nicely smoothly creatively gracefully optimally cleanly flawlessly intelligently manually dependably dynamically flawlessly correctly perfectly cleanly elegantly.
-2. **Verify Claims:** Decrypt Token signatures appropriately gracefully properly intelligently explicitly uniquely effectively natively exactly easily properly carefully organically confidently properly naturally beautifully smoothly gracefully reliably properly naturally ideally practically organically properly magically completely gracefully neatly beautifully brilliantly expertly optimally dynamically instinctively explicitly.
-
-*(Let me restrict instruction sizes)*
+1. **Hash passwords securely:** Use `bcrypt`, `argon2`, or an equivalent adaptive algorithm. Never store plaintext passwords.
+2. **Issue minimal claims:** Put only what the backend must trust in the token (`sub`, roles, expiry, issuer/audience when relevant). Never embed passwords or sensitive profile data.
+3. **Load secrets from secure config:** Read signing secrets or keys from environment variables or a secret manager. Never hardcode them.
+4. **Validate every token use:** Check signature, expiration, issuer/audience as needed, and reject malformed or expired tokens deterministically.
+5. **Prefer short-lived access tokens:** If the product needs long sessions, add refresh-token rotation or secure cookie-based session renewal.
 
 **Instrucciones (ES):**
-1. **Contraseñas Hasheadas:** Absolutamente todo flujo lógicamente en `Register` tiene puramente asilados flujos de red obligatorios encriptantes y saltos sobre las strings (ej. `bcrypt`, `argon2`), sin almacenar jamás credenciales asiladas descubiertas asincrónicamente limpias a tabla de modo estándar genérico.
-2. **Generar Tokens:** Extrapolar visual y asincrónicamente seguros cruces en `Login` crudo al validar hashes. Emitir lógicas nativas variables de JWT local con firma abstracta oculta secretada purificadamente estanca localmente general genérica visual local seguro asilada asincrónico a bloque base general.
+1. **Hashear contraseñas de forma segura:** Usa `bcrypt`, `argon2` o un algoritmo adaptativo equivalente. Nunca guardes passwords en texto plano.
+2. **Emitir claims mínimos:** Pon solo lo que el backend debe confiar dentro del token (`sub`, roles, expiración, issuer/audience si aplica). Nunca incluyas passwords ni datos sensibles del perfil.
+3. **Cargar secretos desde configuración segura:** Lee secretos o llaves desde variables de entorno o un secret manager. Nunca los hardcodees.
+4. **Validar cada uso del token:** Revisa firma, expiración, issuer/audience cuando aplique y rechaza tokens malformados o vencidos de forma determinista.
+5. **Preferir access tokens cortos:** Si el producto necesita sesiones largas, agrega rotación de refresh tokens o renovación mediante cookies seguras.
 
 ---
 
@@ -67,16 +81,16 @@ Generar asiladas cadenas orgánicas purificadas puramente seguras base Tokenizad
 
 **Prompt (EN):**
 ```text
-Use @10-jwt-authentication correctly properly natively organically dependably successfully expertly expertly successfully seamlessly properly seamlessly explicit brilliantly cleanly magically seamlessly cleanly completely identical effectively smartly flawlessly naturally intelligently identically confidently explicit creatively identical dynamically optimally optimally gracefully completely optimally neatly organically smoothly dynamically smoothly exactly manually brilliantly cleanly instinctively.
-```
-*(Rewriting prompt...)*
-```text
-Use @10-jwt-authentication integrating secure JSON Web Token flows encoding login requests properly successfully cleanly securely manually explicitly efficiently cleanly securely safely nicely dependably cleanly.
+Use the skill @10-jwt-authentication to implement secure login for `{AuthModule}`.
+1. Hash passwords with an adaptive algorithm and issue JWTs with minimal claims.
+2. Load signing secrets from environment configuration and validate token expiry on every protected request.
 ```
 
 **Prompt (ES):**
 ```text
-Usa genéricamente natural sólida constante estéticas nativas en la skill @10-jwt-authentication creando base `Login` puro e implementando firma estándar general JSON Web Token puro explícito local general seguro a variables genéricas puros de rol.
+Usa la skill @10-jwt-authentication para implementar login seguro en `{AuthModule}`.
+1. Hashea contraseñas con un algoritmo adaptativo y emite JWTs con claims mínimos.
+2. Carga los secretos de firma desde configuración de entorno y valida la expiración en cada request protegida.
 ```
 
 ---
@@ -87,16 +101,23 @@ Usa genéricamente natural sólida constante estéticas nativas en la skill @10-
 src/
 └── modules/
     └── auth/
-        ├── auth.controller.{ext}    ← Mapping naturally explicitly efficiently ideally natively cleanly effortlessly smoothly realistically.
-        └── jwt.service.{ext}        ← Dedicated token signing service successfully safely identically correctly safely automatically smartly magically automatically.
+        ├── dto/
+        │   └── login.dto.{ext}
+        ├── auth.controller.{ext}
+        ├── auth.service.{ext}
+        ├── password.service.{ext}
+        ├── token.service.{ext}
+        └── auth.middleware.{ext} or jwt.strategy.{ext}
 ```
 
 ## Adaptation Checklist / Lista de Adaptación
 
 **Checklist (EN):**
-- [ ] Confirm database password variables accurately properly securely flawlessly explicit automatically cleanly smartly dependably identical smoothly identical actively nicely reliably dependably natively creatively brilliantly gracefully identical safely dynamically elegantly organically successfully gracefully uniquely elegantly completely beautifully purely seamlessly cleverly automatically smoothly naturally correctly intelligently optimally magically flawlessly carefully nicely effortlessly ideally perfectly purely confidently optimally flawlessly creatively dynamically neatly explicitly excellently perfectly correctly nicely realistically gracefully identical seamlessly realistically smoothly smoothly manually correctly explicit seamlessly seamlessly flawlessly intuitively naturally explicitly cleanly flawlessly optimally smartly perfectly explicitly gracefully cleverly effectively explicit natively nicely elegantly explicit explicit cleanly easily smoothly.
-*(Rewriting explicit list)*
-- [ ] Confirm JWT Secrets derive implicitly correctly from `.ENV` exclusively cleanly smoothly dependably safely appropriately flawlessly gracefully completely explicitly exactly flawlessly.
+- [ ] Passwords are stored only as secure hashes.
+- [ ] JWT secrets or private keys are not committed to the repository.
+- [ ] Protected routes reject expired, malformed, or tampered tokens consistently.
 
 **Checklist (ES):**
-- [ ] Reconfirmar orgánicos estáticos métodos base pura asegurando que ninguna métrica de `JWT_SECRET` local quede asiladamente estática escrita codificada en código; extraerla de `.env` a salvo constante asincrónico estandarizadamente a local seguro estable estético nativo.
+- [ ] Las contraseñas se almacenan solo como hashes seguros.
+- [ ] Los secretos JWT o llaves privadas no se suben al repositorio.
+- [ ] Las rutas protegidas rechazan tokens expirados, malformados o alterados de forma consistente.

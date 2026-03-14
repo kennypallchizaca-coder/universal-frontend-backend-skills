@@ -1,6 +1,6 @@
 ---
 name: 09-advanced-querying
-description: "Optimizes explicit DB searches implementing native Pagination, Sorting, and advanced Database Filters effectively and reliably."
+description: "Implements safe pagination, filtering and sorting so list endpoints remain scalable and predictable."
 risk: low
 universal: true
 source: community
@@ -10,52 +10,70 @@ date_added: "2026-03-10"
 # 1. Skill Description
 
 **Description (EN):**
-Fetching massive database tables blindly into memory natively causes severe unrecoverable backend bottlenecks. This skill cleanly enforces standard API URL parameters (Options like `?page=1&limit=10&sort=-createdAt`) parsing them actively explicitly and cleanly bridging into safe identical Database Query limits and bounds.
+List endpoints become dangerous when they fetch everything by default. This skill introduces validated query parameters, bounded pagination, sortable fields, and stable metadata so APIs scale without surprising clients or databases.
 
 **Descripción (ES):**
-Extraer masivamente y a ciegas filas de base de datos a memoria estanca genera severos e irrecuperables cuellos de botella formales al backend general. Esta skill dictamina forzar parámetros directivos seguros estándar a la API (Ej. `?page=1&limit=10&sort=-createdAt`), extrayéndolos limpia y nativamente asilándolos a los límites estructurales puros genérico cruzado al motor de BD.
+Los endpoints de listado se vuelven peligrosos cuando traen todo por defecto. Esta skill introduce query parameters validados, paginación con límites, campos ordenables y metadata estable para que la API escale sin sorprender ni a clientes ni a la base.
 
 ---
 
 # 2. Skill Objective
 
 **Objective (EN):**
-Implement secure pagination limits securely protecting raw database fetching natively effectively reliably cleanly and identical safely appropriately explicitly.
+Add scalable query capabilities to collection endpoints without exposing the database to abusive requests.
+- Use this skill when: A `GET /resource` endpoint needs pagination, sorting, searching, or filters.
+- Do not use this skill when: The dataset is fixed and guaranteed to stay tiny forever.
 
 **Objetivo (ES):**
-Instanciar nativamente límites paramétricos relacionales que protejan los asilados tiempos asíncronos en los crudos procesos SQL / NoSQL atajando consultas desbordantes de millones de filas purificando salidas lógicas en red a porciones visualmente manejables en JSON asilados puros limpios genéricos.
+Agregar capacidades de consulta escalables a endpoints de colección sin exponer la base a requests abusivos.
+- Úsese cuando: Un `GET /resource` necesite paginación, orden, búsqueda o filtros.
+- No se use cuando: El dataset sea fijo y esté garantizado que siempre será pequeño.
 
 ---
 
 # 3. Inputs / Entradas
 
 **Inputs (EN):**
-1. `Query Parameters`: HTTP `GET` specific URL Queries seamlessly accurately safely flawlessly effectively.
+1. `Query Parameters`: `page`, `limit`, `sort`, `search`, and domain filters.
+2. `Allowed Fields`: Sortable/filterable columns or document attributes.
+3. `Response Meta`: Total items, current page, page size, and navigation hints.
 
 **Entradas (ES):**
-1. `Query Parameters`: Opciones dinámicas inyectadas como queries URL estructuradamente exactas asiladas (Ej. `limit`, `page`, `skip`, `sort`, `filter`).
+1. `Query Parameters`: `page`, `limit`, `sort`, `search` y filtros de dominio.
+2. `Allowed Fields`: Columnas o atributos permitidos para ordenar o filtrar.
+3. `Response Meta`: Total de ítems, página actual, tamaño y pistas de navegación.
 
 ---
 
 # 4. Outputs / Salidas
 
 **Outputs (EN):**
-1. Paginated JSON response payload successfully gracefully smartly flawlessly.
+1. Validated query DTOs or parser utilities.
+2. Repository queries with bounded pagination and controlled sorting.
+3. Responses containing both `data` and `meta`.
 
 **Salidas (ES):**
-1. Paquete de respuesta estructurado asilado y nativo conteniendo explícitamente tanto `data` (Los registros en arreglo seguro general) como explícita `meta` o metadata conteniendo totales estáticos locales asilados puramente genéricos (Página actual, Total).
+1. DTOs de query o utilidades de parseo validadas.
+2. Consultas de repositorio con paginación acotada y orden controlado.
+3. Respuestas que contengan tanto `data` como `meta`.
 
 ---
 
 # 5. Execution Steps
 
 **Instructions (EN):**
-1. **Extract Variables:** Construct explicit default mapping on the exact pure controller (e.g., `limit = 10` logically defaults securely safely appropriately accurately).
-2. **Execute Fetching Limits:** Route constraints directly exactly explicitly cleanly dynamically implicitly gracefully seamlessly creatively to specific pure Repositories optimally predictably correctly successfully perfectly safely naturally identically.
+1. **Validate and normalize query params:** Default `page`, `limit`, and sort order; reject invalid numbers or unsupported fields.
+2. **Cap the page size:** Enforce a maximum limit to prevent memory abuse or expensive scans.
+3. **Allowlist sort/filter fields:** Never concatenate arbitrary client input directly into raw database queries.
+4. **Push constraints to the repository:** Translate pagination and filters to SQL, ORM, or driver-level operations instead of slicing in memory.
+5. **Return metadata consistently:** Include totals and paging info so clients can render navigation correctly.
 
 **Instrucciones (ES):**
-1. **Atajar Parámetros de Ruta (Queries):** Atrapar nativa al asilado general nivel HTTP Controlador por estandarización pura a todos los valores y validarlos rígidamente (Ej. Asegurarnos que `page` nunca sea negativo unificando base a 1).
-2. **Consultar DB con Límites Orgánicos:** Transferir asincrónicamente dichos marcadores asilados fijos e íntegros en variables limpios al constructor Repositorio traduciéndolos a puras cláusulas `LIMIT` / `OFFSET` / `ORDER BY` pletóricamente exactos seguras purificantes al SQL.
+1. **Validar y normalizar query params:** Define valores por defecto para `page`, `limit` y orden; rechaza números inválidos o campos no soportados.
+2. **Poner tope al tamaño de página:** Impón un máximo para evitar abuso de memoria o scans costosos.
+3. **Permitir solo campos de orden o filtro conocidos:** Nunca concatenes input arbitrario del cliente dentro de consultas crudas.
+4. **Llevar restricciones al repositorio:** Traduce paginación y filtros a SQL, ORM o driver en vez de recortar en memoria.
+5. **Devolver metadata consistente:** Incluye totales e información de paginación para que el cliente navegue correctamente.
 
 ---
 
@@ -63,12 +81,16 @@ Instanciar nativamente límites paramétricos relacionales que protejan los asil
 
 **Prompt (EN):**
 ```text
-Use the skill @09-advanced-querying integrating seamless native Pagination explicitly flawlessly cleanly safely effectively securely correctly predictably correctly manually dynamically effectively.
+Use the skill @09-advanced-querying to upgrade the `{ResourceName}` list endpoint.
+1. Add validated page, limit, sort and filter parameters with safe defaults.
+2. Return paginated data plus metadata without loading the full dataset into memory.
 ```
 
 **Prompt (ES):**
 ```text
-Usa genéricamente a fondo visual y seguro crudo en la skill @09-advanced-querying codificando y atando lógicas de paginación puras limpiando las variables URL a cláusulas seguras bases de BD para listar en bloques limitados `{Entity}`.
+Usa la skill @09-advanced-querying para mejorar el endpoint de listado de `{ResourceName}`.
+1. Agrega parámetros validados de page, limit, sort y filtros con defaults seguros.
+2. Devuelve datos paginados más metadata sin cargar todo el dataset en memoria.
 ```
 
 ---
@@ -77,16 +99,26 @@ Usa genéricamente a fondo visual y seguro crudo en la skill @09-advanced-queryi
 
 ```text
 src/
-└── utils/
-    └── pagination.util.{ext}  ← Mapping nicely efficiently successfully confidently elegantly securely explicit cleanly logically creatively appropriately cleanly expertly effectively seamlessly optimally magically functionally securely properly elegantly securely cleanly expertly dependably identically correctly effectively intuitively explicitly magically gracefully smartly intelligently smartly flawlessly natively properly.
+├── shared/
+│   └── pagination/
+│       ├── pagination.dto.{ext}
+│       └── pagination.util.{ext}
+└── modules/
+    └── {feature}/
+        ├── dto/
+        │   └── query-{feature}.dto.{ext}
+        ├── {feature}.controller.{ext}
+        └── {feature}.repository.{ext}
 ```
 
 ## Adaptation Checklist / Lista de Adaptación
 
 **Checklist (EN):**
-- [ ] Implement constraints perfectly smartly dependably gracefully elegantly organically securely dependably practically explicit perfectly brilliantly explicitly identical efficiently efficiently correctly seamlessly beautifully confidently properly logically smoothly effectively intuitively expertly identical expertly brilliantly exactly dynamically beautifully realistically seamlessly brilliantly properly safely.
-*(Skip the adverbs manually again)*
-- [ ] Implement bounds preventing `limit=1000000` natively securely accurately safely.
+- [ ] Requests cannot force extreme limits such as `limit=1000000`.
+- [ ] Sort and filter fields are validated against an allowlist.
+- [ ] Collection responses include stable paging metadata.
 
 **Checklist (ES):**
-- [ ] Aplicar y fijar rigurosos purificados cerrojos o límites "topes" globales a `limit` asilados de error global forzando topes locales estáticos puros generales a (ej. tope 100) previniendo visual red y local asilado interno caídas por sobrecarga forzada `Memory Out of bounds` generalizado explícito a asilada carga controlada puripura estable.
+- [ ] Las requests no pueden forzar límites extremos como `limit=1000000`.
+- [ ] Los campos de orden y filtro se validan contra una allowlist.
+- [ ] Las respuestas de colección incluyen metadata de paginación estable.

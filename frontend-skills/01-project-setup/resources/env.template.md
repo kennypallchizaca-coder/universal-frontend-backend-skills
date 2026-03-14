@@ -14,7 +14,7 @@ VITE_API_URL=http://localhost:8080/api
 VITE_STRIPE_PUBLIC_KEY=pk_test_123
 
 # ESTO SERÁ IGNORADO Y PROTEGIDO POR VITE:
-DB_PASSWORD=secret
+DB_PASSWORD=server-only-value
 ```
 
 ---
@@ -28,7 +28,7 @@ DB_PASSWORD=secret
 PUBLIC_API_URL=http://localhost:8080/api
 
 # Astro corre en Edge/Server también, lo que NO sea PUBLIC_ lo guardará en Server context:
-SECRET_API_KEY=12345
+SECRET_API_KEY=server-only-value
 ```
 
 ---

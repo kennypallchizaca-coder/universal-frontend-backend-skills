@@ -1,6 +1,6 @@
 ---
 name: 03-routing-strategy
-description: "Establishes a robust Routing Strategy for Single Page Applications (SPA). Implements lazy loading for performance optimization, structural routing layouts, and fallback 404 handlers."
+description: "Defines a portable routing strategy with layouts, lazy loading, nested routes and predictable fallback handling."
 risk: medium
 universal: true
 source: community
@@ -10,66 +10,70 @@ date_added: "2026-03-10"
 # 1. Skill Description
 
 **Description (EN):**
-A modern frontend Application relies heavily upon Browser History manipulation creating the illusion of deep nesting natively without server reloads. This skill imposes a highly structured Routing strategy configuring logical module Layouts, mapping dynamic parameter URL structures, and executing `Lazy Loading` logic preventing colossal initial javascript payloads.
+Routing is the structural backbone of a frontend application. This skill organizes route trees, layouts, dynamic segments, lazy loading, and fallback screens so navigation remains scalable and understandable across frameworks.
 
 **Descripción (ES):**
-Una Aplicación frontend moderna depende en gran medida de la manipulación del Historial del Navegador creando la ilusión de anidamiento profundo nativamente sin recargas de servidor. Esta skill impone una estrategia de Routing altamente estructurada configurando Layouts modulares lógicos, mapeando parámetros dinámicos de estructuras URL y ejecutando lógica de `Lazy Loading` para evitar cargas iniciales colosales de javascript.
+El routing es la columna estructural de una aplicación frontend. Esta skill organiza árboles de rutas, layouts, segmentos dinámicos, lazy loading y pantallas fallback para que la navegación escale y siga siendo entendible entre frameworks.
 
 ---
 
 # 2. Skill Objective
 
 **Objective (EN):**
-Engineer a declarative application architecture routing standard paths rendering parent Layout structures effectively.
-- Use this skill when: Setting up multi-page ecosystems involving internal Authenticated Dashboards explicitly distinct from Public Landing Pages.
-- Do not use this skill when: Developing micro-components directly, or manipulating logic entirely within fixed Modal pop-up ecosystems.
+Design a route system that separates public and private areas while keeping performance and maintainability under control.
+- Use this skill when: The application has multiple pages, nested layouts, or route-level code splitting.
+- Do not use this skill when: A small widget or modal has no standalone navigation model.
 
 **Objetivo (ES):**
-Ingeniar una arquitectura de aplicación declarativa enrutando rutas estándar y renderizando estructuras Layout padre efectivamente.
-- Úsese cuando: Se configuren ecosistemas multi-página que involucren Dashboards Autenticados internos explícitamente distintos de Landing Pages Públicas.
-- No se use cuando: Se desarrollen micro-componentes directamente, o se manipule lógica de forma enteramente aislada dentro de ecosistemas de pop-ups Modales.
+Diseñar un sistema de rutas que separe áreas públicas y privadas mientras mantiene rendimiento y mantenibilidad bajo control.
+- Úsese cuando: La aplicación tenga múltiples páginas, layouts anidados o code splitting por ruta.
+- No se use cuando: Un widget pequeño o modal no tenga un modelo de navegación propio.
 
 ---
 
 # 3. Inputs / Entradas
 
 **Inputs (EN):**
-1. `Router Mechanism`: E.g., React Router, Vue Router, Angular Routing Module.
-2. `Views List`: Targeted Smart Components resolving explicit URL addresses cleanly.
+1. `Router Mechanism`: Framework router, file-based router, or equivalent navigation layer.
+2. `Route Tree`: Public pages, protected pages, dynamic detail routes, and error views.
+3. `Layout Needs`: Shells such as app layout, auth layout, dashboard layout, or public layout.
 
 **Entradas (ES):**
-1. `Router Mechanism`: Ej., React Router, Vue Router, Angular Routing Module.
-2. `Views List`: Componentes Smart objetivos resolviendo direcciones URL explícitas de manera limpia.
+1. `Router Mechanism`: Router del framework, file-based router o capa equivalente de navegación.
+2. `Route Tree`: Páginas públicas, protegidas, rutas dinámicas de detalle y vistas de error.
+3. `Layout Needs`: Shells como app layout, auth layout, dashboard layout o public layout.
 
 ---
 
 # 4. Outputs / Salidas
 
 **Outputs (EN):**
-1. Standardized `Router` definition block injecting Lazy Loading Promise variables cleanly.
-2. Encapsulated `MainLayout` wrapping static UI dependencies natively (e.g. permanent Sidebars/Navbars).
-3. Base 404 Route handling invalid manual navigational inputs catching arbitrary string definitions completely.
+1. A structured route definition with nested layouts.
+2. Lazy-loaded pages or route modules where appropriate.
+3. Deterministic fallback behavior for unknown paths.
 
 **Salidas (ES):**
-1. Bloque de definición estándar `Router` inyectando limpiamente variables Promesa de Lazy Loading.
-2. `MainLayout` encapsulado envolviendo dependencias UI estáticas nativamente (ej. Sidebars/Navbars permanentes).
-3. Ruta Base 404 manejando ingresos manuales inválidos de navegación, capturando definiciones de string aleatorias al 100%.
+1. Una definición de rutas estructurada con layouts anidados.
+2. Páginas o módulos lazy-loaded cuando corresponda.
+3. Comportamiento fallback determinista para rutas desconocidas.
 
 ---
 
 # 5. Execution Steps
 
 **Instructions (EN):**
-1. **Initialize Lazy Rendering Logic:** Implement exact import parameter boundaries capturing Views asynchronously (`React.lazy(() => import())` or Vue `defineAsyncComponent`) enforcing optimal bundle sizes ignoring initial load mapping dependencies.
-2. **Draft the Base Layouts:** Design structural Shell components holding universal navigation metrics natively injecting isolated `<Outlet />`, `<router-view>` or `<router-outlet>` variables dynamically.
-3. **Assemble the Route Array:** Declare precise Array objects mapping URL Paths cleanly coupling them logically toward imported nested Lazy references natively. Include dynamic parsing indicators strictly (e.g. `path: '/items/:id'`).
-4. **Append the Fallback Node:** Insert a catch-all wildcard string designation exactly at the file array conclusion rendering standardized 404 View Error pages gracefully preventing catastrophic white-screen renderings natively.
+1. **Map the route tree first:** Identify public, protected, detail, and fallback routes before writing code.
+2. **Group routes by layout:** Place routes under the shell that owns the shared navigation and page frame.
+3. **Lazy-load route boundaries:** Split large pages or modules at route boundaries to reduce initial bundle cost.
+4. **Support dynamic segments intentionally:** Keep route params explicit and aligned with feature needs.
+5. **Add a final fallback route:** Unknown paths should land on a consistent not-found view instead of a blank screen.
 
 **Instrucciones (ES):**
-1. **Inicializar Lógica Lazy Rendering:** Implementar límites exactos de importación capturando Vistas asíncronamente (`React.lazy(() => import())` o Vue `defineAsyncComponent`) forzando tamaños óptimos del bundle ignorando dependencias durante la carga inicial.
-2. **Dibujar los Base Layouts:** Diseñar componentes Shell estructurales conteniendo la navegación universal, inyectando nativamente de forma dinámica las aisadas etiquetas `<Outlet />`, `<router-view>` o `<router-outlet>`.
-3. **Ensamblar el Arreglo de Rutas:** Declarar objetos Array precisos mapeando limplamente Rutas URL, acoplándolas lógicamente con las referencias Lazy importadas. Incluir indicadores estrictos de parámetros dinámicos (ej. `path: '/items/:id'`).
-4. **Agregar el Nodo Fallback:** Insertar una denominación comodín tipo "atrapar-todo" ("catch-all") exactamente al final del Array renderizando páginas estandarizadas de Error 404 preveniendo caídas de pantalla en blanco catastróficas.
+1. **Mapear primero el árbol de rutas:** Identifica rutas públicas, protegidas, de detalle y fallback antes de escribir código.
+2. **Agrupar rutas por layout:** Coloca cada ruta bajo el shell que posee la navegación compartida y el marco visual correspondiente.
+3. **Aplicar lazy loading en límites de ruta:** Divide páginas o módulos grandes en fronteras de ruta para reducir el costo del bundle inicial.
+4. **Soportar segmentos dinámicos con intención:** Mantén los params explícitos y alineados con las necesidades del feature.
+5. **Agregar una ruta fallback final:** Las rutas desconocidas deben aterrizar en una vista consistente de no encontrado y no en una pantalla en blanco.
 
 ---
 
@@ -77,18 +81,16 @@ Ingeniar una arquitectura de aplicación declarativa enrutando rutas estándar y
 
 **Prompt (EN):**
 ```text
-Use the skill @03-routing-strategy to map the navigational application flow securely in this {Framework} environment.
-1. Implement a nested `<AuthLayout>` design architecture mapping internal Views properly injecting the outlet natively.
-2. Define the exact path routing arrays targeting `{ViewComponents}` deploying strict Async Lazy logic parameters efficiently.
-3. Apply standard catch-all wildcard parameters resolving manual typographical errors gracefully redirecting towards a `{NotFoundView}` correctly.
+Use the skill @03-routing-strategy to organize navigation in this {Framework} app.
+1. Separate public and private routes under their corresponding layouts.
+2. Apply lazy loading and a final not-found route so navigation stays scalable and safe.
 ```
 
 **Prompt (ES):**
 ```text
-Usa la skill @03-routing-strategy para mapear el flujo navegacional seguro en este entorno {Framework}.
-1. Implementa una arquitectura en diseño anidado `<AuthLayout>` mapeando las Vistas internas inyectando correctamente el puerto (outlet) nativo.
-2. Define los parámetros exactos de rutas (arrays) hacia los `{ViewComponents}` desplegando estrictos parámetros Lógicos de Async Lazy eficientemente.
-3. Aplica los parámetros estándar comodín atrapa-todo (catch-all) resolviendo de manera elegante los fallos tipográficos manuales redireccionando exactamente hacia un `{NotFoundView}`.
+Usa la skill @03-routing-strategy para organizar la navegación de esta app {Framework}.
+1. Separa las rutas públicas y privadas bajo sus layouts correspondientes.
+2. Aplica lazy loading y una ruta final de no encontrado para que la navegación sea escalable y segura.
 ```
 
 ---
@@ -97,24 +99,26 @@ Usa la skill @03-routing-strategy para mapear el flujo navegacional seguro en es
 
 ```text
 src/
-├── app.router.{ts}             ← Index mapping entire Application routes
+├── app/
+│   └── router/
+│       └── routes.{ext}
 ├── shared/
 │   └── layouts/
-│       ├── MainLayout.{ext}    ← Shell wrapper possessing persistent Headers
-│       └── AuthLayout.{ext}    ← Unauthenticated simple Wrapper container
+│       ├── AppLayout.{ext}
+│       └── AuthLayout.{ext}
 └── features/
-    └── {EntityName}/
-        └── routes.{ts}         ← Sub-module explicit route definitions
+    └── {FeatureName}/
+        └── routes.{ext}
 ```
 
 ## Adaptation Checklist / Lista de Adaptación
 
 **Checklist (EN):**
-- [ ] Confirm viewing generic `/non/existent/path` correctly renders the explicit 404 Not Found component seamlessly.
-- [ ] Prove entering `/dashboard` legitimately preserves persistent Universal components (Sidebar/Navbar) correctly avoiding un-needed continuous DOM recalculations natively.
-- [ ] Ensure specific Views execute internal HTTP network fetches resolving Chunk payloads correctly preventing massive Main File index sizes securely.
+- [ ] Public and protected areas are grouped under clear layouts.
+- [ ] Route-level lazy loading is used where it meaningfully reduces initial load cost.
+- [ ] Unknown paths resolve to a predictable not-found experience.
 
 **Checklist (ES):**
-- [ ] Confirmar que ingresar genéricamente a `/non/existent/path` renderiza correctamente y de manera limpia el componente 404 No Encontrado.
-- [ ] Demostrar que entrar a `/dashboard` verdaderamente preserva los componentes Universales permanentes (Sidebar/Navbar) previniendo recalcualciones continuas innecesarias del DOM.
-- [ ] Asegurar que Vistas específicas ejecuten fetches de red HTTP resolviendo cargas ("Chunks") asíncronas de manera adecuada, reduciendo de forma segura el tamaño de descarga inicial del Archivo Principal (Main File index).
+- [ ] Las áreas públicas y protegidas están agrupadas bajo layouts claros.
+- [ ] El lazy loading por ruta se usa donde realmente reduce el costo de carga inicial.
+- [ ] Las rutas desconocidas resuelven una experiencia consistente de no encontrado.

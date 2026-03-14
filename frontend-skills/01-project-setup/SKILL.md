@@ -1,6 +1,6 @@
 ---
 name: 01-project-setup
-description: "Establishes the foundational configuration for a Single Page Application (SPA) or Static Site Generator (SSG). Enforces strict TypeScript typing, absolute path aliasing (@/), and secure environment variable management."
+description: "Establishes the frontend foundation with strict typing, path aliases, environment hygiene and predictable project conventions."
 risk: low
 universal: true
 source: community
@@ -10,68 +10,70 @@ date_added: "2026-03-10"
 # 1. Skill Description
 
 **Description (EN):**
-A robust frontend starts with absolute predictability. Relying on endless relative paths (`../../../components`) creates brittle refactoring scenarios, while exposing internal backend API keys accidentally to the client results in fatal security flaws. This skill standardizes the architectural foundation configuring precise compiler behaviors before writing visual code.
+A strong frontend starts with predictable structure. This skill defines the minimum setup needed to keep imports clean, configuration explicit, and environment variables safe across modern frontend frameworks.
 
 **Descripción (ES):**
-Un frontend robusto comienza con una previsibilidad absoluta. Depender de rutas relativas infinitas (`../../../components`) crea escenarios de refactorización frágiles, mientras que exponer accidentalmente claves de API internas del backend al cliente resulta en fallos de seguridad fatales. Esta skill estandariza la base arquitectónica configurando comportamientos precisos del compilador antes de escribir código visual.
+Un frontend sólido empieza con una estructura predecible. Esta skill define la configuración mínima necesaria para mantener imports limpios, configuración explícita y variables de entorno seguras en frameworks frontend modernos.
 
 ---
 
 # 2. Skill Objective
 
 **Objective (EN):**
-Initialize the frontend core structure enforcing robust TypeScript boundaries, clean import aliases, and public-facing environment abstractions.
-- Use this skill when: Initializing a brand-new repository or resolving chaotic import path structures (Refactoring "Module Not Found" cascades).
-- Do not use this skill when: Modifying an external library node_modules dependency explicitly.
+Prepare a new or existing frontend project for maintainable development.
+- Use this skill when: Bootstrapping a frontend app, cleaning inconsistent config, or standardizing imports and env files.
+- Do not use this skill when: You are only changing isolated component behavior with no impact on project configuration.
 
 **Objetivo (ES):**
-Inicializar la estructura central del frontend aplicando límites robustos de TypeScript, alias de importación limpios y abstracciones de entorno orientadas al entorno público.
-- Úsese cuando: Se inicializa un repositorio nuevo o se resuelven estructuras caóticas de rutas de importación (Refactorización de cascadas "Module Not Found").
-- No se use cuando: Se modifica dependencias explícitas externas de node_modules.
+Preparar un proyecto frontend nuevo o existente para un desarrollo mantenible.
+- Úsese cuando: Se inicialice una app frontend, se limpie configuración inconsistente o se estandaricen imports y archivos de entorno.
+- No se use cuando: Solo se cambie el comportamiento de un componente aislado sin impacto en la configuración del proyecto.
 
 ---
 
 # 3. Inputs / Entradas
 
 **Inputs (EN):**
-1. `Frontend Framework`: React, Angular, Vue, or Astro.
-2. `Bundler`: Webpack, Vite, or CLI Native.
-3. `Env Variables`: The keys that require client exposure.
+1. `Frontend Runtime`: The chosen UI runtime and component model for the project.
+2. `Tooling Layer`: The build, compile, and test chain that resolves imports and environment values.
+3. `Environment Rules`: Which values are public to the client and which must remain server-only.
 
 **Entradas (ES):**
-1. `Frontend Framework`: React, Angular, Vue o Astro.
-2. `Bundler`: Webpack, Vite o CLI Nativo.
-3. `Env Variables`: Las claves que requieren exposición al cliente.
+1. `Frontend Runtime`: El runtime UI y el modelo de componentes elegidos para el proyecto.
+2. `Tooling Layer`: La cadena de build, compilacion y pruebas que resuelve imports y variables de entorno.
+3. `Environment Rules`: Qué valores son públicos para el cliente y cuáles deben permanecer solo del lado servidor.
 
 ---
 
 # 4. Outputs / Salidas
 
 **Outputs (EN):**
-1. Standardized `tsconfig.json` configurations.
-2. `vite.config.ts` or `angular.json` route mappers.
-3. `.env` and `.env.example` templates enforcing public prefixes (e.g., `VITE_API_URL`).
+1. Strict compiler or type-checking configuration.
+2. Stable alias configuration for top-level imports.
+3. Safe `.env` and `.env.example` conventions adapted to the stack.
 
 **Salidas (ES):**
-1. Configuraciones estandarizadas en `tsconfig.json`.
-2. Mapeadores de rutas en `vite.config.ts` o `angular.json`.
-3. Plantillas `.env` y `.env.example` imponiendo prefijos públicos (ej. `VITE_API_URL`).
+1. Configuración estricta del compilador o del type-checking.
+2. Configuración estable de aliases para imports de alto nivel.
+3. Convenciones seguras de `.env` y `.env.example` adaptadas al stack.
 
 ---
 
 # 5. Execution Steps
 
 **Instructions (EN):**
-1. **TypeScript Auditing:** Target `tsconfig.json`. Enforce `"strict": true`, `"noImplicitAny": true`, and ensure `"paths"` is instantiated.
-2. **Setup Absolute Aliasing:** Define the `@/*` alias pointing universally to the `src/*` directory ensuring top-level path resolution ignores relative nesting entirely.
-3. **Bundler Synchronization:** Replicate the alias logic exclusively inside the framework Bundler (e.g. `resolve.alias` in Vite).
-4. **Environment Bootstrapping:** Create a `.env` root file containing the `API_URL`. Ensure the variable prefix perfectly matches the strict Framework requirement (e.g. `VITE_` or `PUBLIC_`) to guarantee it becomes readable within the client Javascript `window` boundary securely.
+1. **Enable strict development defaults:** Turn on strict typing or equivalent compiler checks whenever the stack supports it.
+2. **Create import aliases:** Define a stable alias such as `@/` for the main source folder and mirror that setup in the bundler, compiler, and test runner.
+3. **Separate public and private env values:** Only expose variables that are explicitly intended for the client bundle.
+4. **Document the config contract:** Leave `.env.example`, alias docs, and base scripts clear enough for any contributor or agent to bootstrap the project safely.
+5. **Keep the structure simple:** Prefer a clean root with source, config, and environment files over ad-hoc scattered setup.
 
 **Instrucciones (ES):**
-1. **Auditoría de TypeScript:** Apunta a `tsconfig.json`. Aplica `"strict": true`, `"noImplicitAny": true` y asegúrate de instanciar `"paths"`.
-2. **Configurar Alias Absoluto:** Define el alias `@/*` apuntando universalmente al directorio `src/*` asegurando que la resolución de rutas de nivel superior ignore por completo anidamientos relativos.
-3. **Sincronización del Bundler:** Replica la lógica del alias exclusivamente dentro del Bundler del framework (ej. `resolve.alias` en Vite).
-4. **Inicialización de Entorno:** Crea un archivo raíz `.env` que contenga la `API_URL`. Asegúrate de que el prefijo de la variable coincida perfectamente con el requisito estricto del Framework (ej. `VITE_` o `PUBLIC_`) para garantizar que se vuelva legible de forma segura dentro del límite Javascript del cliente.
+1. **Activar defaults estrictos de desarrollo:** Habilita tipado estricto o checks equivalentes del compilador siempre que el stack lo soporte.
+2. **Crear aliases de importación:** Define un alias estable como `@/` para la carpeta principal de código y replica esa configuración en bundler, compilador y test runner.
+3. **Separar variables públicas y privadas:** Expón al bundle cliente solo las variables que realmente estén pensadas para el navegador.
+4. **Documentar el contrato de configuración:** Deja `.env.example`, documentación de aliases y scripts base lo suficientemente claros para que cualquier colaborador o agente inicialice el proyecto con seguridad.
+5. **Mantener la estructura simple:** Prefiere una raíz limpia con código fuente, config y archivos de entorno en vez de una configuración dispersa e improvisada.
 
 ---
 
@@ -79,16 +81,16 @@ Inicializar la estructura central del frontend aplicando límites robustos de Ty
 
 **Prompt (EN):**
 ```text
-Use the skill @01-project-setup to map foundational properties in this {Framework} codebase.
-1. Configure `tsconfig` and the underlying {Bundler} assigning the `@/` absolute alias focusing universally on `src/`.
-2. Generate base `.env` structures exposing the strict Variable Prefix required by the framework pointing explicitly to `{API_URL}`.
+Use the skill @01-project-setup to standardize the foundation of this frontend codebase.
+1. Enable strict compiler checks and define a reusable source alias.
+2. Create environment templates that expose only client-safe variables.
 ```
 
 **Prompt (ES):**
 ```text
-Usa la skill @01-project-setup para mapear las propiedades fundamentales en este código base de {Framework}.
-1. Configura `tsconfig` y el {Bundler} subyacente asignando el alias absoluto `@/` enfocándose universalmente en `src/`.
-2. Genera estructuras base `.env` exponiendo el prefijo de variable estricto requerido por el framework apuntando explícitamente a `{API_URL}`.
+Usa la skill @01-project-setup para estandarizar la base de este proyecto frontend.
+1. Activa checks estrictos del compilador y define un alias reutilizable para el código fuente.
+2. Crea plantillas de entorno que expongan solo variables seguras para el cliente.
 ```
 
 ---
@@ -96,21 +98,23 @@ Usa la skill @01-project-setup para mapear las propiedades fundamentales en este
 # 7. Recommended File Structure / Estructura Recomendada
 
 ```text
-/
-├── .env.development        ← Local API mapping (Never commit)
-├── .env.example            ← Template structure (Commit safely)
-├── tsconfig.json           ← Compiler path bindings
-└── vite.config.{ts}        ← Bundler synchronized execution
+{project-root}/
+├── src/
+├── .env.example
+├── .gitignore
+├── compiler config or equivalent
+├── build config or framework-equivalent config
+└── README.md
 ```
 
 ## Adaptation Checklist / Lista de Adaptación
 
 **Checklist (EN):**
-- [ ] Attempting an import like `import {x} from '@/core'` correctly resolves without Node terminal pathing crashes.
-- [ ] Creating an unused `any` type forces the IDE TS-Server to instantly visualize a red underlining error boundary.
-- [ ] Using `import.meta.env` or `process.env` successfully prints the targeted `.env` string natively to the Browser Console.
+- [ ] Top-level imports resolve through a documented alias instead of deep relative paths.
+- [ ] Public environment variables use the correct exposure mechanism for the chosen stack.
+- [ ] Contributors can clone the project and understand the base configuration quickly.
 
 **Checklist (ES):**
-- [ ] Intentar un import como `import {x} from '@/core'` se resuelve correctamente sin caídas de rutas en la terminal de Node.
-- [ ] Crear un tipo `any` sin usar obliga al Servidor TS del IDE a visualizar instantáneamente un límite de error subrayado en rojo.
-- [ ] Usar `import.meta.env` o `process.env` imprime exitosamente el string nativo apuntado desde `.env` a la Consola del Navegador.
+- [ ] Los imports de alto nivel se resuelven mediante un alias documentado en lugar de rutas relativas profundas.
+- [ ] Las variables públicas usan el prefijo o mecanismo correcto de exposición del framework.
+- [ ] Cualquier colaborador puede clonar el proyecto y entender rápidamente su configuración base.

@@ -1,6 +1,6 @@
 ---
 name: 12-production-deployment
-description: "Establishes Production environments nicely securely effectively flawlessly creatively beautifully optimally rationally natively smartly identically cleanly precisely seamlessly intelligently nicely smoothly seamlessly safely smoothly intelligently exactly efficiently natively clearly intelligently identical expertly easily perfectly dependably properly properly safely cleanly intelligently organically manually intelligently identically seamlessly natively organically effectively intelligently explicitly effectively cleanly dependably automatically cleanly magically successfully brilliantly nicely cleanly elegantly ideally carefully correctly cleanly practically cleanly identically flawlessly identical identically cleanly flawlessly beautifully beautifully smartly dependably predictably seamlessly neatly seamlessly identically perfectly optimally explicitly natively dynamically realistically creatively organically successfully seamlessly smartly cleanly successfully explicitly seamlessly realistically beautifully efficiently successfully explicitly dependably intuitively creatively smoothly creatively exactly flawlessly reliably organically realistically magically dependably beautifully flawlessly beautifully identical smoothly dependably."
+description: "Hardens backend deployment for production with multi-stage builds, non-root containers, secret management and operational safeguards."
 risk: high
 universal: true
 source: community
@@ -10,54 +10,70 @@ date_added: "2026-03-10"
 # 1. Skill Description
 
 **Description (EN):**
-Configuring production deployments cleanly confidently dependably securely intelligently naturally explicitly efficiently perfectly identically gracefully expertly magically manually intuitively safely dependably naturally exactly gracefully smartly seamlessly realistically completely seamlessly identical smoothly safely optimally magically flawlessly dependably successfully correctly cleanly identically beautifully optimally seamlessly organically explicitly identically nicely smoothly dependably smartly logically flawlessly explicitly dynamically gracefully explicitly functionally explicit identically optimally creatively explicitly optimally effectively dependably explicit cleanly flawlessly efficiently creatively expertly cleanly natively properly perfectly identical purely dependably efficiently seamlessly successfully nicely neatly dependably explicitly beautifully properly cleanly optimally skillfully magically instinctively cleanly effectively exactly smoothly dependably cleanly cleanly securely elegantly smoothly identical automatically effortlessly functionally elegantly dynamically successfully cleanly seamlessly dependably effectively expertly gracefully reliably successfully.
-*(I will write pure text for description)*
-Configuring deployments requires explicit security checks cleanly protecting memory natively beautifully cleanly explicitly reliably expertly safely correctly efficiently gracefully smoothly seamlessly magically properly expertly easily identically perfectly seamlessly smoothly dependably efficiently accurately seamlessly intelligently explicitly practically magically expertly optimally cleanly properly dependably efficiently dependably expertly safely elegantly securely organically flawlessly perfectly actively identical gracefully elegantly explicitly identical cleanly beautifully optimally dependably beautifully seamlessly explicitly.
+Production readiness is not just “it runs on my machine.” This skill defines how to package, configure, and operate a backend securely with container hardening, safe environment handling, health checks, and reproducible build steps.
 
 **Descripción (ES):**
-Configurar despliegues de Producción obliga a mutar todas las estrategias asiladas y lúdicas a un núcleo rígidamente blindado purificándose a memoria global, asegurando las lecturas puramente asiladas nativas a variables `.env` productivas crudas seguras estandarizadas lógicamente fijos generales puros de la base relacional productiva general segura general nativa asilado genéricamente pura nativa base.
+Estar listo para producción no es solo “corre en mi máquina”. Esta skill define cómo empaquetar, configurar y operar un backend con endurecimiento de contenedores, manejo seguro de entornos, health checks y pasos de build reproducibles.
 
 ---
 
 # 2. Skill Objective
 
 **Objective (EN):**
-Align application entry smoothly perfectly smartly seamlessly creatively predictably cleanly dynamically cleanly cleanly cleanly dependably flawlessly precisely identically ideally gracefully seamlessly rationally optimally successfully carefully identically beautifully realistically natively dynamically cleanly identically efficiently cleanly correctly dependably smoothly safely logically explicitly smartly automatically cleanly expertly dynamically naturally natively effectively reliably manually seamlessly beautifully brilliantly expertly securely predictably smartly brilliantly naturally optimally predictably cleverly perfectly carefully brilliantly flawlessly dependably correctly identical purely seamlessly flawlessly creatively effortlessly functionally purely expertly beautifully smoothly dependably smoothly elegantly dependably properly beautifully perfectly explicitly identical cleanly dependably naturally organically magically intelligently expertly dependably naturally smoothly.
+Prepare the backend for secure, repeatable deployment across staging and production environments.
+- Use this skill when: Building Docker images, defining runtime environment variables, or preparing CI/CD release flows.
+- Do not use this skill when: You only need a local dev script with no intention of deployment.
 
 **Objetivo (ES):**
-Establecer firmes contenedores asincrónicamente o arquitecturas nativas crudas productivas como Dockerfiles purificados a entorno de Linux optimizados o PM2 sin ruidos base orgánico, apagando logs y limitando fugas RAM.
+Preparar el backend para un despliegue seguro y repetible en staging y producción.
+- Úsese cuando: Se construyan imágenes Docker, variables de entorno de runtime o flujos CI/CD de release.
+- No se use cuando: Solo se necesite un script de desarrollo local sin intención de despliegue.
 
 ---
 
 # 3. Inputs / Entradas
 
 **Inputs (EN):**
-1. `Environment Limits`: Config constraints securely perfectly seamlessly gracefully identically rationally efficiently accurately natively natively identically realistically predictably beautifully perfectly exactly beautifully reliably organically creatively dependably flawlessly optimally identically dependably explicitly logically.
+1. `Runtime Target`: Container platform, VM, PaaS, or orchestrator.
+2. `Build Artifacts`: JAR, compiled Node app, Python package, Go binary, etc.
+3. `Operational Requirements`: Health endpoint, secrets, migrations, logging, resource limits.
 
 **Entradas (ES):**
-1. `Environment Configs`: Configuración asilada y cruda nativamente impuesta de bloque purificada (Dockerfiles / Build Steps puros genéricos genérica puros asilados seguros funcionales limpios nativos locales crudos generales estáticos).
+1. `Runtime Target`: Plataforma de contenedores, VM, PaaS u orquestador.
+2. `Build Artifacts`: JAR, app Node compilada, paquete Python, binario Go, etc.
+3. `Operational Requirements`: Health endpoint, secretos, migraciones, logging y límites de recursos.
 
 ---
 
 # 4. Outputs / Salidas
 
 **Outputs (EN):**
-1. Build Artifacts properly perfectly securely dependably intelligently elegantly magically properly flawlessly seamlessly intuitively creatively beautifully beautifully successfully correctly cleanly magically predictably efficiently organically efficiently exactly optimally optimally beautifully dependably identically beautifully identical safely nicely safely intelligently easily cleanly smoothly seamlessly cleanly cleanly completely securely identically intelligently smoothly gracefully logically explicitly organically natively.
+1. Production-focused Dockerfile or deployment manifest.
+2. Safe runtime configuration driven by environment variables or secret stores.
+3. Operational checks for startup, health, logging, and migration discipline.
 
 **Salidas (ES):**
-1. Instancias base nativas productivamente crudas seguras aisladas en contenedores o imágenes optimizadas globales asiladas lógicas (Node Build / Java .jar Build crudos locales).
+1. Dockerfile o manifiesto de despliegue orientado a producción.
+2. Configuración segura de runtime impulsada por variables de entorno o secret stores.
+3. Chequeos operativos para arranque, health, logging y disciplina de migraciones.
 
 ---
 
 # 5. Execution Steps
 
 **Instructions (EN):**
-1. **Remove Traces:** Block devLogs appropriately neatly rationally explicit smoothly beautifully magically safely securely cleanly organically flawlessly organically safely cleanly correctly beautifully perfectly smoothly identical elegantly efficiently optimally seamlessly properly identically organically cleverly cleanly intelligently magically optimally smartly identical practically correctly realistically nicely realistically explicit elegantly intelligently manually natively.
-2. **Bind Environments:** Deploy seamlessly smoothly identical clearly smoothly functionally magically seamlessly securely seamlessly excellently perfectly nicely dependably effortlessly dependably effectively optimally gracefully dependably organically creatively seamlessly naturally practically intelligently expertly.
+1. **Use multi-stage builds:** Keep compilers and dev dependencies out of the final runtime image.
+2. **Run as a non-root user:** Drop privileges inside the container whenever the base image allows it.
+3. **Externalize secrets and config:** Load database URLs, JWT secrets, API keys, and environment flags from env vars or secret managers, never from committed files.
+4. **Expose health and startup behavior:** Provide a health endpoint and clear startup logs so orchestration platforms can detect readiness and failure.
+5. **Ship only what production needs:** Exclude tests, caches, local `.env` files, and unused build artifacts with `.dockerignore` and release hygiene.
 
 **Instrucciones (ES):**
-1. **Pudrir y Omitir Logs Visuales DEV:** Instanciar metódicamente y cruda el apagado purificador base visual estándar asilado de todo "Console Logging" nativo al pasar puramente el marcador asilado estructurado explícito seguro asincrónico `NODE_ENV=production` asilando de red el Stack.
-2. **Generar Builds y Contenedor:** Unificar lógicamente y orquestar rutinas de compilado reducidas a su mínima asilada nativamente expresión (`npm run build`, `npm run start:prod` puro estable).
+1. **Usar builds multi-stage:** Mantén compiladores y dependencias de desarrollo fuera de la imagen final.
+2. **Ejecutar como usuario no root:** Baja privilegios dentro del contenedor siempre que la imagen base lo permita.
+3. **Externalizar secretos y configuración:** Carga URLs de base, secretos JWT, API keys y flags desde env vars o secret managers, nunca desde archivos subidos al repo.
+4. **Exponer health y arranque:** Provee un endpoint de salud y logs de arranque claros para que la plataforma detecte readiness y fallos.
+5. **Empaquetar solo lo necesario:** Excluye pruebas, cachés, `.env` locales y artefactos sobrantes con `.dockerignore` y buena higiene de release.
 
 ---
 
@@ -65,12 +81,16 @@ Establecer firmes contenedores asincrónicamente o arquitecturas nativas crudas 
 
 **Prompt (EN):**
 ```text
-Use @12-production-deployment correctly nicely explicit neatly confidently securely organically gracefully exactly logically accurately effectively perfectly flawlessly functionally successfully beautifully explicitly logically creatively elegantly expertly identically correctly functionally optimally elegantly flawlessly practically naturally ideally accurately neatly carefully magically natively reliably efficiently realistically nicely explicitly creatively magically brilliantly correctly creatively smoothly intuitively magically explicitly predictably predictably naturally smartly successfully properly dependably smoothly effectively optimally brilliantly beautifully intelligently optimally smoothly nicely expertly magically beautifully safely magically flawlessly cleanly realistically intelligently smartly identical identical correctly optimally gracefully flawlessly seamlessly correctly cleanly beautifully identical expertly elegantly skillfully efficiently flawlessly identically brilliantly precisely properly efficiently safely seamlessly cleanly smoothly confidently successfully purely instinctively flawlessly elegantly seamlessly seamlessly dependably seamlessly successfully.
+Use the skill @12-production-deployment to harden this backend for production.
+1. Build a multi-stage image that runs as a non-root user and excludes dev-only artifacts.
+2. Load secrets from runtime configuration and expose a health endpoint for orchestration checks.
 ```
 
 **Prompt (ES):**
 ```text
-Usa genéricamente natural sólida constante @12-production-deployment estructurando y creando Dockerfiles purificados asincrónicos para un entorno de Production global.
+Usa la skill @12-production-deployment para endurecer este backend para producción.
+1. Construye una imagen multi-stage que corra con usuario no root y excluya artefactos solo de desarrollo.
+2. Carga secretos desde configuración de runtime y expone un endpoint de health para chequeos del orquestador.
 ```
 
 ---
@@ -79,15 +99,23 @@ Usa genéricamente natural sólida constante @12-production-deployment estructur
 
 ```text
 {project-root}/
-├── Dockerfile              ← Optimized mapping dependably successfully explicitly confidently smoothly practically natively nicely optimally completely identically properly seamlessly organically cleanly optimally expertly identical logically intelligently beautifully effectively manually correctly ideally cleanly flawlessly.
-├── docker-compose.yml
-└── .dockerignore           ← Excluding naturally smartly creatively cleanly safely safely identical naturally logically organically magically organically explicitly reliably flawlessly reliably nicely reliably seamlessly skillfully skillfully dynamically rely seamlessly dependably natively purely dependably smoothly reliably reliably identical securely intelligently effectively smoothly magically natively seamlessly securely practically beautifully reliably identical creatively seamlessly magically appropriately rely ideally dependably reliably automatically properly smartly gracefully explicit exactly intuitively identical correctly efficiently identical intelligently organically safely purely gracefully logically gracefully appropriately cleanly perfectly.
+├── Dockerfile
+├── .dockerignore
+├── docker-compose.yml or deploy manifest
+├── .env.production.example
+└── src/
+    └── health/
+        └── health.controller.{ext} or health route
 ```
 
 ## Adaptation Checklist / Lista de Adaptación
 
 **Checklist (EN):**
-- [ ] Explicit configuration securely identical explicitly intuitively dependably appropriately naturally intelligently magically excellently intelligently gracefully expertly magically beautifully smoothly cleanly naturally dynamically smoothly smartly identically identically expertly creatively efficiently cleanly comfortably properly cleanly intuitively smartly completely properly elegantly flawlessly expertly automatically safely cleanly properly identically cleanly flawlessly cleverly predictably flawlessly smoothly smartly dependably explicitly naturally magically creatively confidently dynamically intelligently rationally smoothly elegantly effectively practically gracefully flawlessly cleanly dependably seamlessly safely successfully optimally purely gracefully dependably flawlessly confidently rely optimally creatively dependably efficiently intelligently seamlessly successfully seamlessly organically predictably rely neatly properly naturally explicit exactly cleanly cleanly accurately smoothly flawlessly smartly expertly beautifully ideally beautifully correctly organically intelligently dependably dynamically optimally natively optimally identical intelligently organically identical organically identical magically identically effectively explicitly effectively flawlessly dependably successfully correctly elegantly magically confidently creatively creatively expertly effectively naturally correctly.
+- [ ] The runtime image excludes dev-only tooling and secrets.
+- [ ] The container runs without root privileges whenever possible.
+- [ ] Production configuration comes from environment or secret stores, not committed local files.
 
 **Checklist (ES):**
-- [ ] Bloquear y confirmar al 100% rígidamente crudo a local nativo base puros asilados genéricos estables de seguridad que ni una sola variable cruda general de `.env` se vaya pegada en red subida cruda en `Git` al generar la imagen nativamente impuesta de bloque orquestador central general.
+- [ ] La imagen final excluye tooling de desarrollo y secretos.
+- [ ] El contenedor corre sin privilegios root siempre que sea posible.
+- [ ] La configuración de producción viene de entorno o secret stores, no de archivos locales subidos al repo.

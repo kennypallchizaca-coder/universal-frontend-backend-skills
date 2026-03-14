@@ -1,6 +1,6 @@
 ---
 name: 01-project-bootstrap
-description: "Initializes a backend project from scratch: configures the HTTP server, defines the application entry point, and exposes a health endpoint. Works with any language or framework."
+description: "Initializes a backend service with a clear entry point, environment-driven configuration and a health endpoint."
 risk: low
 universal: true
 source: community
@@ -10,72 +10,70 @@ date_added: "2026-03-10"
 # 1. Skill Description
 
 **Description (EN):**
-Initializes any backend project from scratch. It configures the HTTP server, defines the application entry point, and exposes a `/health` endpoint that confirms the environment is running correctly. This is the mandatory first step before developing any business functionality.
+Every backend needs a stable starting point before business logic is added. This skill sets up the application entry point, environment configuration, and a basic health endpoint so the service can be booted, verified, and extended safely.
 
 **Descripción (ES):**
-Inicializa cualquier proyecto backend desde cero. Configura el servidor HTTP, define el punto de entrada de la aplicación y expone un endpoint `/health` que confirma que el entorno está corriendo correctamente. Este es el primer paso obligatorio antes de desarrollar cualquier funcionalidad de negocio.
+Todo backend necesita un punto de partida estable antes de agregar lógica de negocio. Esta skill configura el punto de entrada de la aplicación, la configuración por entorno y un endpoint básico de salud para que el servicio pueda arrancar, verificarse y extenderse con seguridad.
 
 ---
 
 # 2. Skill Objective
 
 **Objective (EN):**
-Achieve a functional HTTP server with minimal configuration, ready to receive business modules, using environment variables for all configurable values.
-- Use this skill when: Starting a backend project or microservice from scratch, or migrating an application to another framework or runtime.
-- Do not use this skill when: The project already has a functional server and entry point, or you are only adding features to an existing backend.
+Create a minimal but professional backend bootstrap ready for future modules.
+- Use this skill when: Starting a backend project, a microservice, or a new service runtime from scratch.
+- Do not use this skill when: The project already has a working entry point and you are only extending existing features.
 
 **Objetivo (ES):**
-Lograr un servidor HTTP funcional con configuración mínima, listo para recibir módulos de negocio, usando variables de entorno para todos los valores configurables.
-- Úsese cuando: Se inicia un proyecto backend o microservicio desde cero, o al migrar una aplicación a otro framework o runtime.
-- No se use cuando: El proyecto ya tiene un servidor y punto de entrada funcional, o solo se están agregando funcionalidades a un backend existente.
+Crear un bootstrap backend mínimo pero profesional, listo para módulos futuros.
+- Úsese cuando: Se inicie un backend, un microservicio o un nuevo runtime de servicio desde cero.
+- No se use cuando: El proyecto ya tenga un punto de entrada funcionando y solo se estén extendiendo features existentes.
 
 ---
 
 # 3. Inputs / Entradas
 
 **Inputs (EN):**
-1. `runtime`: Language or platform (Node.js, Python, Java, Go, etc.).
-2. `framework`: HTTP Framework (Express, FastAPI, Gin, Spring Boot, etc.).
-3. `PORT`: Server port. Default: `8080`.
-4. `APP_ENV`: Execution environment: `development`, `staging`, `production`.
+1. `Runtime`: Node.js, Python, Java, Go, .NET, or another server runtime.
+2. `HTTP Layer`: Native framework, standard library server, or equivalent transport adapter.
+3. `Environment Values`: `PORT`, environment name, and any required startup config.
 
 **Entradas (ES):**
-1. `runtime`: Lenguaje o plataforma (Node.js, Python, Java, Go, etc.).
-2. `framework`: Framework HTTP (Express, FastAPI, Gin, Spring Boot, etc.).
-3. `PORT`: Puerto del servidor. Predeterminado: `8080`.
-4. `APP_ENV`: Ambiente de ejecución: `development`, `staging`, `production`.
+1. `Runtime`: Node.js, Python, Java, Go, .NET u otro runtime de servidor.
+2. `HTTP Layer`: Framework web, servidor de librería estándar o adaptador equivalente de transporte.
+3. `Environment Values`: `PORT`, nombre del entorno y cualquier configuración requerida para arrancar.
 
 ---
 
 # 4. Outputs / Salidas
 
 **Outputs (EN):**
-1. Active HTTP server listening on the configured port.
-2. `GET /health` responding `200 OK` confirming the server is online.
-3. `.env.example` file exposing public environment variable templates.
-4. Application Entry point file natively (e.g. `main.{ext}`).
+1. A working application entry point.
+2. A health-check endpoint such as `GET /health`.
+3. Environment templates and startup defaults that are safe to version.
 
 **Salidas (ES):**
-1. Servidor HTTP activo escuchando en el puerto configurado.
-2. `GET /health` respondiendo `200 OK` confirmando que el servidor está en línea.
-3. Archivo `.env.example` exponiendo plantillas de variables de entorno públicas.
-4. Archivo nativo del Punto de entrada de la aplicación (ej. `main.{ext}`).
+1. Un punto de entrada de aplicación funcionando.
+2. Un endpoint de health-check como `GET /health`.
+3. Plantillas de entorno y defaults de arranque seguros para versionar.
 
 ---
 
 # 5. Execution Steps
 
 **Instructions (EN):**
-1. **Initialize Project:** Choose the correct language/framework and initialize the project using its package manager natively (`npm init`, `go mod init`, `gradle init`).
-2. **Install Dependencies:** Install the minimal necessary HTTP server dependency flawlessly.
-3. **Configure Entry Point:** Create the `main.{ext}` file cleanly natively. Read the `PORT` from environment variables, initialize the HTTP server natively, and register the `GET /health` route returning `{ "status": "ok", "timestamp": "<ISO>" }`.
-4. **Environment Security:** Create `.env.example` detailing configurable variables securely. Add `.env` to `.gitignore` strictly avoiding credential leakage organically.
+1. **Initialize the project runtime:** Create the base package, module, or workspace using the ecosystem’s standard tooling.
+2. **Add only the essential HTTP dependencies:** Keep bootstrap minimal until real feature needs appear.
+3. **Create a clear entry point:** Read configuration from environment, start the HTTP server, and register a simple health route.
+4. **Define safe defaults:** Fall back to a standard port like `8080` and expose the expected environment variables in `.env.example`.
+5. **Protect local secrets:** Keep real `.env` files out of version control and commit only templates or examples.
 
 **Instrucciones (ES):**
-1. **Inicializar Proyecto:** Elige el lenguaje/framework correcto e inicializa el proyecto usando su gestor de paquetes de manera nativa (`npm init`, `go mod init`, `gradle init`).
-2. **Instalar Dependencias:** Instala la dependencia mínima necesaria del servidor HTTP sin errores.
-3. **Configurar Punto de Entrada:** Crea el archivo `main.{ext}` limpiamente de modo nativo. Lee el `PORT` (Puerto) desde las variables de entorno, inicializa el servidor HTTP nativamente y registra la ruta `GET /health` devolviendo `{ "status": "ok", "timestamp": "<ISO>" }`.
-4. **Seguridad de Entorno:** Crea un `.env.example` detallando variables configurables firmemente. Añade `.env` a `.gitignore` evitando estrictamente y de forma orgánica fugas de credenciales.
+1. **Inicializar el runtime del proyecto:** Crea el paquete, módulo o workspace base usando el tooling estándar del ecosistema.
+2. **Agregar solo las dependencias HTTP esenciales:** Mantén el bootstrap mínimo hasta que existan necesidades reales de features.
+3. **Crear un punto de entrada claro:** Lee configuración desde el entorno, inicia el servidor HTTP y registra una ruta simple de salud.
+4. **Definir defaults seguros:** Usa un puerto estándar como `8080` cuando no haya configuración explícita y expón las variables esperadas en `.env.example`.
+5. **Proteger secretos locales:** Mantén los `.env` reales fuera del control de versiones y sube solo plantillas o ejemplos.
 
 ---
 
@@ -83,16 +81,16 @@ Lograr un servidor HTTP funcional con configuración mínima, listo para recibir
 
 **Prompt (EN):**
 ```text
-Use the skill @01-project-bootstrap to initialize a {Runtime} + {Framework} backend called `{AppName}` on port {PORT}. 
-1. Map `APP_ENV` and `PORT` cleanly.
-2. Configure the server entry point successfully triggering `/health` gracefully.
+Use the skill @01-project-bootstrap to initialize a new `{Runtime}` backend service.
+1. Create a clear entry point that reads environment config and starts the HTTP layer.
+2. Add a `GET /health` endpoint plus safe environment templates for local development.
 ```
 
 **Prompt (ES):**
 ```text
-Usa la skill @01-project-bootstrap para inicializar un backend en {Runtime} + {Framework} llamado `{AppName}` en el puerto {PORT}.
-1. Mapea `APP_ENV` y `PORT` de manera limpia.
-2. Configura el punto de entrada del servidor gatillando existosamente `/health` y devolviendo un 200 seguro.
+Usa la skill @01-project-bootstrap para inicializar un nuevo servicio backend en `{Runtime}`.
+1. Crea un punto de entrada claro que lea configuración del entorno y levante la capa HTTP.
+2. Agrega un endpoint `GET /health` y plantillas seguras de entorno para desarrollo local.
 ```
 
 ---
@@ -102,21 +100,21 @@ Usa la skill @01-project-bootstrap para inicializar un backend en {Runtime} + {F
 ```text
 {project-root}/
 ├── src/
-│   └── main.{ext}            ← Server Entry Point
-├── .env                      ← Real Values (DO NOT commit)
-├── .env.example              ← Public Template (Commit safe)
+│   └── main.{ext}
+├── .env.example
 ├── .gitignore
-└── README.md
+├── README.md
+└── runtime config files
 ```
 
 ## Adaptation Checklist / Lista de Adaptación
 
 **Checklist (EN):**
-- [ ] Define the `PORT` successfully falling back to `8080` if completely omitted predictably.
-- [ ] Ensure the native framework Server cleanly executes explicitly capturing the generic configuration seamlessly safely.
-- [ ] Confirm `GET /health` responds exactly `200 OK` inherently exposing standard uptime indicators efficiently correctly.
+- [ ] The service starts from a single clear entry point.
+- [ ] `GET /health` returns a successful response when the service is healthy.
+- [ ] Real local secrets are excluded from version control.
 
 **Checklist (ES):**
-- [ ] Definir el `PORT` ejecutando el respaldo a `8080` de tener una omisión total sobre sus parámetros nativos predeterminados.
-- [ ] Asegurarse de que el Servidor framework nativo levante capturando su configuración eficientemente seguro.
-- [ ] Confirmar de raíz nativa que `GET /health` devuelve un exacto `200 OK` evidenciando indicadores básicos estándar orgánicamente puros.
+- [ ] El servicio arranca desde un punto de entrada único y claro.
+- [ ] `GET /health` devuelve una respuesta exitosa cuando el servicio está sano.
+- [ ] Los secretos locales reales están excluidos del control de versiones.

@@ -1,16 +1,6 @@
 ---
 name: 04-service-layer
-description: "Isolates the complex Business Logic safely naturally flawlessly predictably correctly completely creatively effectively brilliantly smoothly seamlessly efficiently flawlessly creatively cleanly beautifully efficiently creatively beautifully successfully explicitly dependably identical appropriately flawlessly efficiently perfectly dependably identically correctly logically clearly functionally safely smoothly intuitively dynamically cleanly flawlessly cleanly securely dependably intelligently nicely elegantly precisely perfectly."
-risk: low
-universal: true
-source: community
-date_added: "2026-03-10"
----
-
-*(Let me fix the description manually to avoid spam)*
----
-name: 04-service-layer
-description: "Isolates specific Business Logic correctly effectively from the HTTP Controller layer natively cleanly intelligently efficiently dependably naturally seamlessly precisely realistically elegantly smoothly optimally flawlessly."
+description: "Moves business rules out of controllers into services so HTTP handling stays thin, testable and framework-agnostic."
 risk: low
 universal: true
 source: community
@@ -20,57 +10,70 @@ date_added: "2026-03-10"
 # 1. Skill Description
 
 **Description (EN):**
-Controllers exclusively handle network traffic realistically clearly reliably safely purely optimally accurately successfully efficiently nicely cleanly easily successfully seamlessly naturally securely identical cleanly instinctively successfully appropriately accurately completely smoothly smoothly cleanly successfully successfully accurately neatly completely natively cleanly successfully realistically smoothly beautifully smoothly natively perfectly smoothly expertly seamlessly correctly exactly organically smoothly natively intelligently cleanly dependably exactly naturally flawlessly practically neatly seamlessly smartly dependably elegantly dependably optimally uniquely efficiently dependably intuitively completely predictably intelligently completely organically effectively ideally logically intuitively automatically accurately smoothly identically intuitively smartly intelligently smartly identical successfully seamlessly smartly carefully naturally beautifully instinctively optimally completely nicely explicitly cleanly cleverly intelligently flawlessly smoothly strictly cleanly uniquely.
-Controllers should only handle network boundaries (HTTP requests parsing). When Business Logic infects the Controller, the code becomes un-testable. The Service Layer isolates logic processing completely cleanly naturally intelligently creatively flawlessly safely efficiently dependably securely neatly efficiently beautifully smoothly accurately properly smoothly identically naturally nicely explicitly perfectly correctly securely expertly successfully expertly securely functionally gracefully precisely flawlessly completely identical expertly correctly cleanly perfectly creatively neatly identical correctly exactly actively beautifully dependably automatically seamlessly optimally.
+Controllers should handle transport concerns, not business decisions. This skill defines a service layer where validations, workflows, calculations, and orchestration live independently from HTTP details.
 
 **Descripción (ES):**
-Los controladores deben enfocarse únicamente en tratar peticiones puras asilados HTTP limitados nativamente (parseando y limpiando objetos base). Si la lógica interna estricta contamina de forma nativa a los base controladores, el diseño completo colapsa. La capa de Servicios procesa estas asiladas operaciones matemáticas estancas o cruce relacional independientemente seguro libre del framework en general.
+Los controladores deben manejar transporte, no decisiones de negocio. Esta skill define una capa de servicios donde viven validaciones, flujos, cálculos y orquestación de forma independiente a los detalles HTTP.
 
 ---
 
 # 2. Skill Objective
 
 **Objective (EN):**
-Encapsulate Business calculations executing exact routines beautifully dynamically smoothly identical properly nicely dependably safely explicitly elegantly clearly dependably beautifully cleverly cleverly instinctively cleanly dependably safely beautifully identically naturally smoothly smoothly instinctively beautifully seamlessly optimally safely dependably automatically seamlessly intuitively completely beautifully flawlessly exactly cleanly optimally automatically seamlessly elegantly dependably identical properly implicitly correctly nicely automatically cleanly flawlessly beautifully seamlessly safely excellently beautifully efficiently effectively perfectly predictably dynamically smartly smoothly reliably expertly naturally identically successfully cleanly natively securely identical intuitively accurately dependably successfully dependably automatically beautifully flawlessly safely actively practically natively perfectly cleanly smartly completely safely purely brilliantly logically identical intuitively nicely explicit smoothly nicely neatly organically successfully carefully smoothly successfully neatly seamlessly seamlessly intelligently reliably smoothly natively exclusively identically.
-*(Manually rewriting this Objective)*
-Encapsulate complex Business calculations executing exact targeted queries naturally smoothly beautifully successfully dependably flawlessly safely explicitly elegantly cleanly securely.
+Create services that encapsulate business logic and remain reusable across controllers, jobs, and tests.
+- Use this skill when: Logic is growing beyond simple request parsing, or multiple endpoints share the same workflow.
+- Do not use this skill when: The change is limited to static routing metadata with no business behavior.
 
 **Objetivo (ES):**
-Proteger y aislar metódicamente nativo las lógicas de negocio, cálculos o asilados procesos encapsulados a Salvo y asilado directo seguro inestable seguro impecable puros genéricamente puros internamente correctos independientemente de protocolos externos lógicos bases.
+Crear servicios que encapsulen lógica de negocio y puedan reutilizarse entre controladores, jobs y pruebas.
+- Úsese cuando: La lógica crece más allá del parseo de requests o varios endpoints comparten el mismo flujo.
+- No se use cuando: El cambio se limita a metadatos de rutas sin comportamiento de negocio.
 
 ---
 
 # 3. Inputs / Entradas
 
 **Inputs (EN):**
-1. `Logic Handlers`: Business validation requirements correctly flawlessly cleanly nicely optimally securely reliably.
+1. `Use Case`: The business action to implement, such as creating an order or approving a payment.
+2. `Dependencies`: Repositories, gateways, queues, caches, or external services required by the flow.
+3. `Domain Rules`: Validations, invariants, permissions, and calculations.
 
 **Entradas (ES):**
-1. `Logic Handlers`: Atributos y lógica pura a consumar o evaluar orgánicamente eficaces de origen general puro de requisitos nativos internamente perfectos y seguros asilados.
+1. `Use Case`: Acción de negocio a implementar, como crear una orden o aprobar un pago.
+2. `Dependencies`: Repositorios, gateways, colas, cachés o servicios externos requeridos por el flujo.
+3. `Domain Rules`: Validaciones, invariantes, permisos y cálculos.
 
 ---
 
 # 4. Outputs / Salidas
 
 **Outputs (EN):**
-1. A stateless Generic Service successfully explicitly exactly cleanly seamlessly cleanly expertly dependably gracefully ideally neatly nicely.
+1. A service class or module with clear methods per use case.
+2. Thin controllers that delegate work and only map HTTP input/output.
+3. Testable business rules decoupled from request/response objects.
 
 **Salidas (ES):**
-1. Clases e interfaces (Services) asilados y puros abstractamente y limpios de control estricto asincrónico a base general de red de un módulo (Stateless) puro estable confiable óptimo nativamente y visual explícito lógico del sistema seguro de bloque base correcto global eficaz genérico a vista estricto.
+1. Una clase o módulo de servicio con métodos claros por caso de uso.
+2. Controladores delgados que delegan el trabajo y solo traducen entrada/salida HTTP.
+3. Reglas de negocio testeables y desacopladas de `request` y `response`.
 
 ---
 
 # 5. Execution Steps
 
 **Instructions (EN):**
-1. **Create the Base Service:** Initiate simple generic mapping isolating HTTP concepts implicitly dependably optimally intelligently intelligently beautifully successfully cleanly organically smoothly natively smoothly automatically nicely dependably creatively smartly safely identical securely elegantly optimally flawlessly perfectly ideally beautifully appropriately flawlessly optimally explicitly brilliantly realistically optimally optimally expertly cleanly neatly realistically accurately efficiently cleanly automatically neatly automatically smartly intelligently beautifully completely expertly intelligently natively cleanly successfully dependably automatically purely securely beautifully explicitly organically explicitly effectively dependably properly gracefully expertly identical perfectly cleanly identical creatively efficiently cleanly perfectly organically functionally smoothly cleanly organically completely exactly efficiently dependably cleanly cleanly fully brilliantly seamlessly efficiently actively intuitively practically dependably gracefully identically cleanly cleanly cleanly smartly cleanly correctly excellently cleanly perfectly creatively cleanly smoothly intuitively cleanly purely carefully dependably logically dependably exactly safely correctly identical automatically brilliantly intelligently cleanly dependably exactly properly ideally cleanly naturally neatly smoothly securely explicitly organically exactly smoothly optimally successfully gracefully identically clean identically natively organically identical neatly creatively successfully efficiently actively identical seamlessly smoothly intelligently cleanly effectively seamlessly cleanly intelligently dependably dynamically brilliantly efficiently efficiently identically elegantly securely purely beautifully functionally implicitly identical smoothly purely smartly organically purely elegantly smoothly natively elegantly successfully dynamically naturally properly elegantly realistically naturally functionally brilliantly elegantly optimally neatly completely completely gracefully exact brilliantly natively effectively efficiently nicely properly cleanly smoothly dynamically realistically cleanly nicely automatically successfully beautifully completely practically securely exactly creatively natively organically intuitively intelligently exactly perfectly purely cleanly dependably completely purely perfectly brilliantly organically expertly smoothly flawlessly cleanly correctly automatically dynamically practically ideally.
-*(Sigh...) I will restrict prompts manually to simple single text segments.*
-1. **Create the Base Service:** Abstain from using HTTP Requests objects natively neatly efficiently perfectly naturally safely accurately.
-2. **Handle Generic Dependencies:** Inject the specific Repository nicely logically creatively explicitly explicitly nicely brilliantly correctly natively logically successfully.
+1. **Keep controllers thin:** Parse path/query/body input, call the service, and map the result to HTTP.
+2. **Inject dependencies into the service:** Repositories and external clients should be constructor-injected or framework-injected, never instantiated ad hoc inside methods.
+3. **Centralize business rules:** Place validations, calculations, conditional flows, and orchestration in the service.
+4. **Raise domain-level errors:** Throw meaningful exceptions that can later be translated by the global error layer.
+5. **Design for reuse:** A service method should be callable from an HTTP controller, a queue consumer, or a scheduled job without needing web objects.
 
 **Instrucciones (ES):**
-1. **Elaboración de Base Servicios:** Restringir cualquier inyección cruda global a objetos como `req` o `res`, asegurando un pasaje de parámetros nativos en la capa Service sin ruidos nativamente.
-2. **Conectar e Inyectar:** Elaborar Inyecciones propias del Repositorio crudo estandarizado internamente resolviendo con lógicas exactas asiladas.
+1. **Mantener controladores delgados:** Parsear `path/query/body`, llamar al servicio y mapear el resultado a HTTP.
+2. **Inyectar dependencias en el servicio:** Repositorios y clientes externos deben inyectarse, nunca crearse de forma improvisada dentro del método.
+3. **Centralizar reglas de negocio:** Coloca validaciones, cálculos, flujos condicionales y orquestación en el servicio.
+4. **Lanzar errores de dominio:** Usa excepciones significativas que luego puedan traducirse en la capa global de errores.
+5. **Diseñar para reutilizar:** Un método de servicio debe poder llamarse desde HTTP, colas o tareas programadas sin depender de objetos web.
 
 ---
 
@@ -78,12 +81,16 @@ Proteger y aislar metódicamente nativo las lógicas de negocio, cálculos o asi
 
 **Prompt (EN):**
 ```text
-Use the skill @04-service-layer resolving `{TargetFeatures}` implicitly natively dependably smartly safely optimally seamlessly gracefully gracefully beautifully ideally natively smoothly beautifully intuitively seamlessly dependably dependably magically.
+Use the skill @04-service-layer to implement the `{UseCase}` workflow.
+1. Keep the controller limited to HTTP mapping.
+2. Move validations, calculations and dependency orchestration into a reusable service method.
 ```
 
 **Prompt (ES):**
 ```text
-Usa genéricamente la skill @04-service-layer forzando `{TargetFeatures}` y un asilado de lógicas base impecable de sistema en asincrónicos puros.
+Usa la skill @04-service-layer para implementar el flujo `{UseCase}`.
+1. Deja el controlador limitado al mapeo HTTP.
+2. Mueve validaciones, cálculos y orquestación de dependencias a un método reutilizable del servicio.
 ```
 
 ---
@@ -93,14 +100,22 @@ Usa genéricamente la skill @04-service-layer forzando `{TargetFeatures}` y un a
 ```text
 src/
 └── modules/
-    └── {FeatureName}/
-        └── {feature}.service.{ext}  ← Encapsulated Service Layer naturally completely logically purely expertly effectively logically cleanly safely dynamically purely naturally flawlessly effectively fully flawlessly purely intuitively.
+    └── {feature}/
+        ├── dto/
+        ├── {feature}.controller.{ext}
+        ├── {feature}.service.{ext}
+        ├── {feature}.repository.{ext}
+        └── {feature}.spec.{ext}
 ```
 
 ## Adaptation Checklist / Lista de Adaptación
 
 **Checklist (EN):**
-- [ ] Controller correctly triggers logical mapping gracefully gracefully creatively dynamically perfectly efficiently exactly explicitly dynamically flawlessly automatically safely organically exactly flawlessly efficiently cleanly identically completely gracefully intelligently organically properly nicely perfectly seamlessly magically identically smartly predictably seamlessly.
+- [ ] Controllers do not contain business calculations or persistence logic.
+- [ ] Services accept plain arguments or DTOs, not raw web framework objects.
+- [ ] The main use case can be unit-tested without booting an HTTP server.
 
 **Checklist (ES):**
-- [ ] Validar por nativos procesos que ningún Controlador aloje o esconda cálculos intrincados lógicamente o asignaciones forzosas evadiendo de red puramente su rol exacto como guardián HTTP base cruda original segura asilada del resto genérico nativo transparente lógicamente en su capa global y estética asilada y funcional estricta transparente de manera asilada correcta de control purificada y libre estándar estable nativa global.
+- [ ] Los controladores no contienen cálculos de negocio ni lógica de persistencia.
+- [ ] Los servicios reciben argumentos planos o DTOs, no objetos crudos del framework web.
+- [ ] El caso de uso principal puede probarse sin levantar un servidor HTTP.

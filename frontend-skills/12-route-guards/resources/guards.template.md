@@ -1,119 +1,97 @@
 # Route Guards Matrix
 
-Pattern to conditionally block views before they are rendered, based on auth state.
+Pattern to block or allow routes based on shared session state.
 
 ## Universal Truth Source
-Assume we have an `authService` or global state that answers:
+
+Do not use `localStorage.getItem('token')` as the primary truth source.
+Assume there is a shared auth store or auth service exposing:
+
 ```typescript
-const isAuthenticated = () => !!localStorage.getItem('token');
+type SessionStatus = 'unknown' | 'authenticated' | 'guest';
+
+const sessionStatus = () => authStore.status;
+const isAuthenticated = () => sessionStatus() === 'authenticated';
+const isBootstrapping = () => sessionStatus() === 'unknown';
 ```
+
+Assume `bootstrapSession()` asks the backend for `/me` or an equivalent endpoint and updates the shared auth store.
 
 ---
 
 ## Vue (Vue Router 4)
 
-Vue Router provides global navigation guards `beforeEach`. You attach `meta` fields to the routes.
-
 Filename: `src/app/router/index.ts`
 ```typescript
 import { router } from './router-definition';
-import { isAuthenticated } from '@/shared/services/auth.service';
+import { useAuthStore } from '@/shared/stores/auth.store';
 
-router.beforeEach((to, from, next) => {
-  // 1. Check if route requires auth
-  if (to.meta.requiresAuth && !isAuthenticated()) {
-    return next({ path: '/auth/login' }); // Force login
+router.beforeEach(async (to) => {
+  const authStore = useAuthStore();
+
+  if (authStore.status === 'unknown') {
+    await bootstrapSession();
   }
 
-  // 2. Check if route requires guest (like login page)
-  if (to.meta.requiresGuest && isAuthenticated()) {
-    return next({ path: '/' }); // Redirect logged users to dashboard
+  if (to.meta.requiresAuth && authStore.status !== 'authenticated') {
+    return { path: '/auth/login', query: { returnUrl: to.fullPath } };
   }
 
-  // 3. Let everyone else pass
-  next();
+  if (to.meta.requiresGuest && authStore.status === 'authenticated') {
+    return { path: '/' };
+  }
 });
-```
-
-Usage in routes definition:
-```typescript
-{
-  path: '/',
-  component: MainLayout,
-  meta: { requiresAuth: true }, // Applies to all children automatically
-  children: [ ... ]
-}
 ```
 
 ---
 
-## React (React Router v6)
-
-React Router doesn't use interceptor functions. Instead, you wrap your layouts/routes in Higher Order Components (Guards) that read state and return a `<Navigate>` immediately if unauthorized.
+## React (React Router v6+)
 
 Filename: `src/app/router/guards/RequireAuth.tsx`
 ```tsx
-import { Navigate, Outlet } from 'react-router-dom';
-import { useAuthStore } from '@/shared/store/auth.store';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { useAuthStore } from '@/shared/stores/auth.store';
 
 export const RequireAuth = () => {
-  // Replace with context, Redux, Zustand or raw localStorage check
-  const isAuthenticated = useAuthStore(state => state.isAuthenticated);
+  const location = useLocation();
+  const status = useAuthStore((state) => state.status);
 
-  if (!isAuthenticated) {
-    // If not logged in, redirect to login
-    return <Navigate to="/auth/login" replace />;
+  if (status === 'unknown') {
+    return <div>Loading session...</div>;
   }
 
-  // If yes, render the children routes (the MainLayout)
+  if (status !== 'authenticated') {
+    return <Navigate to="/auth/login" replace state={{ returnTo: location.pathname }} />;
+  }
+
   return <Outlet />;
 };
 ```
 
-Usage in routes definition:
-```tsx
-{
-  path: '/',
-  element: <RequireAuth />, // Protects everything below
-  children: [
-    {
-      element: <MainLayout />,
-      children: [ ... ]
-    }
-  ]
-}
-```
-
 ---
 
-## Angular (Standalone Components)
-
-Angular uses functional Guards (`CanActivateFn`).
+## Angular (Standalone / Functional Guards)
 
 Filename: `src/app/router/guards/auth.guard.ts`
 ```typescript
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthService } from '@/shared/services/auth.service';
+import { AuthStore } from '@/shared/stores/auth.store';
 
-export const requireAuthGuard: CanActivateFn = () => {
-  const authService = inject(AuthService);
+export const requireAuthGuard: CanActivateFn = async (_, state) => {
+  const authStore = inject(AuthStore);
   const router = inject(Router);
 
-  if (!authService.isAuthenticated()) {
-    // Return a UrlTree to redirect
-    return router.parseUrl('/auth/login');
+  if (authStore.status() === 'unknown') {
+    await bootstrapSession();
   }
+
+  if (authStore.status() !== 'authenticated') {
+    return router.createUrlTree(['/auth/login'], {
+      queryParams: { returnUrl: state.url },
+    });
+  }
+
   return true;
 };
-```
-
-Usage in routes definition:
-```typescript
-{
-  path: '',
-  component: MainLayoutComponent,
-  canActivate: [requireAuthGuard], // Evaluated before loading the component or its lazy children
-  children: [ ... ]
-}
 ```
