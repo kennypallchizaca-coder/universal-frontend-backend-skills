@@ -2,10 +2,17 @@
 
 This file documents how the skills in this repository trace back to the source material in:
 
-- `C:\Users\kenny\OneDrive\Documents\CONCEPTOS-FRONTEND-BACKEND\icc-ppw-frameworks-backend-main`
-- `C:\Users\kenny\OneDrive\Documents\CONCEPTOS-FRONTEND-BACKEND\icc-ppw-frameworks-web-main`
+- `icc-ppw-frameworks-backend-main`
+- `icc-ppw-frameworks-web-main`
 
 It is meant to make the relationship explicit for future maintenance.
+
+## Rights and provenance note
+
+- These alignment notes exist for maintenance provenance only.
+- Publishing this repository assumes the maintainer either authored the referenced teaching material or has permission or a compatible license to publish rewritten derivative guidance based on it.
+- Do not copy source text, screenshots, branding assets, student submissions, or other third-party material into this repository unless the publication rights and required attribution are documented.
+- Keep references generic and repository-relative; do not publish private local filesystem paths or personal workstation metadata.
 
 The source guide is strongly oriented toward Angular on the frontend and Spring-style patterns on the backend. The skills in this repository intentionally preserve the same architectural intent, sequencing, and quality constraints while rewriting the instructions in framework-agnostic terms so they can be applied across runtimes without copying framework-specific syntax as if it were universal.
 

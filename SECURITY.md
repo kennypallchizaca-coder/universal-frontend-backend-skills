@@ -10,6 +10,7 @@ Before publishing changes:
 2. Confirm no real secrets were added to examples, templates, or markdown.
 3. Prefer secure-cookie guidance over browser token persistence unless a file explicitly documents an accepted tradeoff.
 4. Keep privileged BaaS operations behind security rules or server-side functions.
+5. Remove private local paths, personal data, and third-party material that lacks clear publication rights.
 
 ## Reporting
 
