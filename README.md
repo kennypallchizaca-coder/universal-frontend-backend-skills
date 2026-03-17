@@ -61,9 +61,8 @@ Run `npm run validate` before pushing changes. The validator checks every `SKILL
 
 Ejecuta `npm run validate` antes de subir cambios. El validador revisa cada `SKILL.md`, los recursos JSON y los enlaces markdown relativos, y además bloquea residuos editoriales accidentales antes de publicar.
 
-For publication hygiene, review the [Repository Compliance Checklist](./COMPLIANCE.md) before releasing or mirroring this repository publicly.
-
-Para higiene de publicación, revisa la [Repository Compliance Checklist](./COMPLIANCE.md) antes de liberar o replicar este repositorio públicamente.
+For publication hygiene, ensure you verify security rules before releasing or mirroring this repository publicly.
+Para higiene de publicación, revisa las políticas de seguridad antes de liberar o replicar este repositorio públicamente.
 
 ---
 
