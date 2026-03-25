@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">Universal Full-Stack Skills Repository Architecture</title>
+  <desc id="desc">Professional overview of the repository structure showing frontend skills, backend skills, and governance tooling.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f8fbff"/>
+      <stop offset="55%" stop-color="#eef4ff"/>
+      <stop offset="100%" stop-color="#f5f8f2"/>
+    </linearGradient>
+    <linearGradient id="panelBlue" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#eef5ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+    <linearGradient id="panelGreen" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#eefbf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+    <linearGradient id="panelGold" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fff8e7"/>
+      <stop offset="100%" stop-color="#fef3c7"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#cfd9e8" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1400" height="760" rx="28" fill="url(#bg)"/>
+  <rect x="36" y="36" width="1328" height="688" rx="30" fill="#ffffff" opacity="0.78"/>
+  <rect x="36" y="36" width="1328" height="688" rx="30" fill="url(#grid)" opacity="0.18"/>
+
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <text x="700" y="100" text-anchor="middle" font-size="42" font-weight="800" fill="#0f172a">Universal Full-Stack Skills</text>
+    <text x="700" y="138" text-anchor="middle" font-size="19" fill="#475569">Documentation-first repository architecture for portable frontend and backend skill design</text>
+
+    <rect x="480" y="164" width="440" height="44" rx="22" fill="#0f172a"/>
+    <text x="700" y="192" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">24 bilingual skills • validator-driven • public-ready documentation</text>
+
+    <rect x="80" y="246" width="392" height="320" rx="28" fill="url(#panelBlue)" filter="url(#shadow)"/>
+    <rect x="504" y="246" width="392" height="320" rx="28" fill="url(#panelGreen)" filter="url(#shadow)"/>
+    <rect x="928" y="246" width="392" height="320" rx="28" fill="url(#panelGold)" filter="url(#shadow)"/>
+
+    <rect x="112" y="278" width="328" height="10" rx="5" fill="#2563eb"/>
+    <rect x="536" y="278" width="328" height="10" rx="5" fill="#16a34a"/>
+    <rect x="960" y="278" width="328" height="10" rx="5" fill="#d97706"/>
+
+    <text x="124" y="326" font-size="31" font-weight="800" fill="#0f172a">Frontend Skills</text>
+    <text x="548" y="326" font-size="31" font-weight="800" fill="#0f172a">Backend Skills</text>
+    <text x="972" y="326" font-size="31" font-weight="800" fill="#0f172a">Governance Layer</text>
+
+    <text x="124" y="356" font-size="16" fill="#475569">Portable client-side patterns grouped by implementation concerns.</text>
+    <text x="548" y="356" font-size="16" fill="#475569">Reusable server-side patterns grouped by service architecture concerns.</text>
+    <text x="972" y="356" font-size="16" fill="#475569">Public docs, validation, and publication controls that keep the repo coherent.</text>
+
+    <g font-size="18" fill="#1e293b">
+      <text x="124" y="412">• setup, env hygiene, and delivery baseline</text>
+      <text x="124" y="452">• components, routing, forms, and UX feedback</text>
+      <text x="124" y="492">• styling, state, data fetching, and navigation</text>
+      <text x="124" y="532">• BaaS integration, auth flow, and guards</text>
+
+      <text x="548" y="412">• bootstrap, modular structure, and REST contracts</text>
+      <text x="548" y="452">• services, persistence, DTOs, and error handling</text>
+      <text x="548" y="492">• relationships, querying, JWT, and authorization</text>
+      <text x="548" y="532">• deployment readiness, rollback, and observability</text>
+
+      <text x="972" y="412">• README, alignment guide, security, and license</text>
+      <text x="972" y="452">• validator script plus GitHub Actions workflow</text>
+      <text x="972" y="492">• namespaced README visuals under assets/readme</text>
+      <text x="972" y="532">• scalable folder boundaries and publication hygiene</text>
+    </g>
+
+    <rect x="110" y="610" width="1180" height="76" rx="22" fill="#0f172a"/>
+    <text x="154" y="654" font-size="17" font-weight="700" fill="#ffffff">Core layout</text>
+
+    <g font-size="16" font-weight="700" fill="#0f172a">
+      <rect x="282" y="628" width="190" height="38" rx="19" fill="#dbeafe"/>
+      <text x="377" y="653" text-anchor="middle">frontend-skills/</text>
+
+      <rect x="492" y="628" width="190" height="38" rx="19" fill="#dcfce7"/>
+      <text x="587" y="653" text-anchor="middle">skills-backend/</text>
+
+      <rect x="702" y="628" width="124" height="38" rx="19" fill="#e2e8f0"/>
+      <text x="764" y="653" text-anchor="middle">scripts/</text>
+
+      <rect x="846" y="628" width="160" height="38" rx="19" fill="#fef3c7"/>
+      <text x="926" y="653" text-anchor="middle">assets/readme/</text>
+
+      <rect x="1026" y="628" width="164" height="38" rx="19" fill="#e2e8f0"/>
+      <text x="1108" y="653" text-anchor="middle">README.md</text>
+    </g>
+  </g>
+</svg>

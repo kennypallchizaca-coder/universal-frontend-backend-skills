@@ -7,7 +7,7 @@
 ![Bilingual](https://img.shields.io/badge/Bilingual-EN%20%7C%20ES-orange.svg)
 ![Node 20+](https://img.shields.io/badge/Node-20%2B-339933.svg)
 
-![Repository Overview](./assets/repository-overview.svg)
+![Repository Architecture](./assets/readme/repository-architecture.svg)
 
 This repository is a **documentation-driven skill library** for AI coding assistants. It packages reusable frontend and backend playbooks as structured `SKILL.md` files, backed by templates, matrices, JSON schemas, validation tooling, and publication guidance.
 
@@ -19,6 +19,7 @@ The content is based on the `CONCEPTOS-FRONTEND-BACKEND` concept material and th
 - [What the Project Includes](#what-the-project-includes)
 - [How It Works](#how-it-works)
 - [Repository Structure](#repository-structure)
+- [Organization Principles](#organization-principles)
 - [Top-Level Files and Directories](#top-level-files-and-directories)
 - [Frontend Skill Catalog](#frontend-skill-catalog)
 - [Backend Skill Catalog](#backend-skill-catalog)
@@ -78,7 +79,7 @@ Each `SKILL.md` follows a stable structure:
 
 ## How It Works
 
-![Skill Workflow](./assets/skill-workflow.svg)
+![Skill Lifecycle](./assets/readme/skill-lifecycle.svg)
 
 At a high level, the repository works like this:
 
@@ -97,8 +98,10 @@ At a high level, the repository works like this:
 │   └── workflows/
 │       └── validate-skills.yml
 ├── assets/
-│   ├── repository-overview.svg
-│   └── skill-workflow.svg
+│   ├── README.md
+│   └── readme/
+│       ├── repository-architecture.svg
+│       └── skill-lifecycle.svg
 ├── frontend-skills/
 │   ├── 01-project-setup/
 │   ├── 02-component-architecture/
@@ -139,12 +142,22 @@ At a high level, the repository works like this:
 └── SECURITY.md
 ```
 
+## Organization Principles
+
+The repository is intentionally organized around stable boundaries so it can keep growing without becoming messy:
+
+- **Root level stays minimal** for public entry documents, repository metadata, automation, and validation tooling.
+- **Each skill remains self-contained** inside its numbered folder, with its own `SKILL.md` and local `resources/` when extra material is needed.
+- **Frontend and backend stay separated by domain** rather than mixing templates, examples, and schemas in one shared bucket.
+- **Static visuals are namespaced by audience** so README assets live in `assets/readme/` instead of being scattered at the repository root.
+- **Validation stays isolated in `scripts/`** so documentation structure can evolve without coupling to application code.
+
 ## Top-Level Files and Directories
 
 | Path | Type | Purpose |
 |---|---|---|
 | `.github/` | Directory | Repository automation, including validation workflow and Dependabot configuration |
-| `assets/` | Directory | SVG assets used in the public README |
+| `assets/` | Directory | Namespaced static assets, including public README diagrams |
 | `frontend-skills/` | Directory | Frontend skill set and support resources |
 | `skills-backend/` | Directory | Backend skill set and support resources |
 | `scripts/` | Directory | Validation tooling |
