@@ -17,12 +17,11 @@
 
 This repository is a **production-ready, documentation-driven skill library** tailored specifically for AI coding assistants (like Cursor, GitHub Copilot, Gemini, Codex, Windsurf, and Claude). It packages reusable frontend and backend playbooks as structured `SKILL.md` files, ensuring that your AI assistant builds with coherent, robust architecture rather than improvising from generic internet examples.
 
-The content is directly based on the `CONCEPTOS-FRONTEND-BACKEND` internal architectures—specifically translating robust Angular/Astro frontend principles and modular REST-first backend principles into portable, framework-agnostic patterns that any AI can apply to React, Vue, Go, Node, or Python. All skills are strictly bilingual (English/Spanish).
+All skills are strictly bilingual (English/Spanish).
 
 ## Table of Contents
 
 - [Purpose](#purpose)
-- [Based On (Origins)](#based-on-origins)
 - [Why AI Agents Need This](#why-ai-agents-need-this)
 - [How to Use This Repository](#how-to-use-this-repository)
 - [Repository Structure](#repository-structure)
@@ -42,14 +41,6 @@ This repository provides:
 - **Bilingual instructions** in English and explicitly normalized Spanish with proper accents.
 
 This is not a runnable application template; it is an **operating system of knowledge** for AI-assisted software development.
-
-## Based On (Origins)
-
-These skills are not random AI generations. They are structured extractions from the **`CONCEPTOS-FRONTEND-BACKEND`** documentation baseline. 
-
-Specifically, they synthesize:
-- **Frontend:** Enterprise-grade boundaries heavily inspired by Angular and Astro architectures (strict component contracts, injected services, standalone route guards, strict state management) translated into patterns that apply equally well to React, Vue, or Svelte.
-- **Backend:** Clean architecture and modular monolith principles (separated transport, service, and persistence layers, strict DTO boundaries, decoupled security patterns) translated into agnostic instructions that work across Node.js, Python, Go, Java, or .NET. 
 
 ## Why AI Agents Need This
 

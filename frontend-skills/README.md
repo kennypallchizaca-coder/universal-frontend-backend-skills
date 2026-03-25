@@ -1,6 +1,5 @@
 # Universal Frontend Skills
 ### 12 bilingual agentic skills for portable frontend architecture
-**Framework-agnostic patterns informed by Angular and Astro source material**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../LICENSE)
 [![Skills](https://img.shields.io/badge/Skills-12-blueviolet)]()
@@ -19,10 +18,9 @@
 
 This frontend library gives an AI assistant a reusable playbook for setup, component boundaries, routing, forms, feedback, auth, data fetching, styling, and navigation without assuming a single framework.
 
-**Based On (Origins):**
-- The strongest source coverage comes directly from the enterprise **Astro and Angular** modules of the `CONCEPTOS-FRONTEND-BACKEND` architecture.
-- React, Vue, and similar stacks are fully supported through these portable patterns, ensuring your AI builds robust boundaries instead of brittle, framework-specific cookbooks.
+**Scope notes:**
 - The library is designed for real application work: SPAs, hybrid-rendered apps, and frontend delivery strategy with release readiness.
+- React, Vue, and similar stacks are fully supported through these portable patterns, ensuring your AI builds robust boundaries instead of brittle, framework-specific cookbooks.
 
 ---
 

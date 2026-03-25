@@ -19,8 +19,7 @@
 
 This backend library gives an AI assistant a reusable playbook for clean API architecture, request validation, data access, security, and production delivery without tying the guidance to one runtime or framework.
 
-**Based On (Origins):**
-- This content is explicitly extracted from the **REST-first modular monolith** blueprints of the `CONCEPTOS-FRONTEND-BACKEND` architecture.
+**Scope notes:**
 - OpenAPI guidance lives inside [03-rest-api-design](./03-rest-api-design/SKILL.md), serving as the single source of truth for the API contract.
 - GraphQL, gRPC, WebSockets, and SSE appear as transport decisions, not first-class tracks.
 - The strongest coverage is for service-style web backends that expose HTTP APIs and need operational discipline.
