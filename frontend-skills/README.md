@@ -1,8 +1,8 @@
 # Universal Frontend Skills
-### 12 bilingual agentic skills for portable frontend architecture
+### 13 bilingual agentic skills for portable frontend architecture
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-12-blueviolet)]()
+[![Skills](https://img.shields.io/badge/Skills-13-blueviolet)]()
 
 **Compatible AI Agents & Models:**  
 [![Cursor](https://img.shields.io/badge/Cursor-AI-000000.svg?logo=cursor)]()
@@ -57,6 +57,7 @@ Run `npm run validate` before publishing updates. The validator checks skill str
 | **10** | [**advanced-navigation**](./10-advanced-navigation/SKILL.md) | Adds breadcrumbs, URL pagination, and navigation-supporting UI patterns | Agrega breadcrumbs, paginacion por URL y ayudas visuales de navegacion | 🟢 Low |
 | **11** | [**baas-integration**](./11-baas-integration/SKILL.md) | Integrates BaaS capabilities through provider adapters and clear boundaries | Integra capacidades BaaS mediante adaptadores y limites claros | 🔴 High |
 | **12** | [**route-guards**](./12-route-guards/SKILL.md) | Protects navigation with auth-aware and guest-aware route rules | Protege la navegacion con reglas de ruta auth y guest | 🔴 High |
+| **13** | [**seo-and-metadata**](./13-seo-and-metadata/SKILL.md) | Implements dynamic SEO, Open Graph, Twitter Cards, canonicals and schema | Implementa SEO dinamico, Open Graph, canónicos y JSON-LD | 🟡 Medium |
 
 ---
 
@@ -84,6 +85,7 @@ These templates and references help adapt the skills to different frameworks whi
 | 11 | [baas-adapter-pattern.md](./11-baas-integration/resources/baas-adapter-pattern.md) | Separate provider bootstrap from capability adapters |
 | 11 | [firebase-setup.template.md](./11-baas-integration/resources/firebase-setup.template.md) | Example setup for Firebase-style provider wiring |
 | 12 | [guards.template.md](./12-route-guards/resources/guards.template.md) | Build auth/guest route guards against a hydrated session source |
+| 13 | [seo-tags.template.md](./13-seo-and-metadata/resources/seo-tags.template.md) | Reference for required HTML, Open Graph, Twitter, and JSON-LD tags |
 
 ---
 

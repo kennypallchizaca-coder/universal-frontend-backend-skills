@@ -1,8 +1,8 @@
 # Universal Full-Stack AI Skills Library
-### 24 bilingual `SKILL.md` guides for portable frontend and backend work
+### 25 bilingual `SKILL.md` guides for portable frontend and backend work
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![Frontend Skills](https://img.shields.io/badge/Frontend-12_Skills-blue.svg)](./frontend-skills/README.md)
+[![Frontend Skills](https://img.shields.io/badge/Frontend-13_Skills-blue.svg)](./frontend-skills/README.md)
 [![Backend Skills](https://img.shields.io/badge/Backend-12_Skills-green.svg)](./skills-backend/README.md)
 [![Bilingual](https://img.shields.io/badge/Bilingual-EN%20%7C%20ES-orange.svg)]()
 [![Validated](https://img.shields.io/badge/Status-Validated-success.svg)]()
@@ -103,6 +103,7 @@ When you ask an AI to "build a login form," it often generates a monolith. By pr
 | 10 | [advanced-navigation](./frontend-skills/10-advanced-navigation/SKILL.md) | Breadcrumbs, URL pagination, URL state |
 | 11 | [baas-integration](./frontend-skills/11-baas-integration/SKILL.md) | BaaS provider integration via adapters |
 | 12 | [route-guards](./frontend-skills/12-route-guards/SKILL.md) | Auth/guest route protection |
+| 13 | [seo-and-metadata](./frontend-skills/13-seo-and-metadata/SKILL.md) | Dynamic SEO, Open Graph, canonical links, json-ld |
 
 *(For templates and schemas, see [frontend-skills/README.md](./frontend-skills/README.md))*
 

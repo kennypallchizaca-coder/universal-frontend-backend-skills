@@ -35,8 +35,8 @@ const markdownFiles = files.filter((file) => file.endsWith('.md'));
 const skillFiles = markdownFiles.filter((file) => path.basename(file) === 'SKILL.md');
 const jsonFiles = files.filter((file) => file.endsWith('.json'));
 
-if (skillFiles.length !== 24) {
-  errors.push(`Expected 24 SKILL.md files but found ${skillFiles.length}.`);
+if (skillFiles.length !== 25) {
+  errors.push(`Expected 25 SKILL.md files but found ${skillFiles.length}.`);
 }
 
 for (const file of skillFiles) {
